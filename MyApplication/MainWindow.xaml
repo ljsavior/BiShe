@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="584.565" Width="855.434">
+        Title="MainWindow" Height="896.665" Width="1382.934">
     <Grid>
-        <Image x:Name="colorImageElement" HorizontalAlignment="Left" Height="480" Margin="21,20,0,0" VerticalAlignment="Top" Width="640" RenderTransformOrigin="-1.271,-2.362"/>
-
+        <Image x:Name="colorImageElement" HorizontalAlignment="Left" Height="480" Margin="27,20,0,0" VerticalAlignment="Top" Width="640"/>
+        <Image x:Name="skeletonImageElement" HorizontalAlignment="Left" Height="480" Margin="710,20,0,0" VerticalAlignment="Top" Width="640"/>
     </Grid>
 </Window>
