@@ -18,6 +18,9 @@ namespace MyApplication
     using Microsoft.Kinect;
     using System.Windows;
     using System.Windows.Media;
+    using Posture;
+    using Utils;
+    using Training;
 
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
@@ -62,6 +65,9 @@ namespace MyApplication
         /// Drawing image that we will display
         private DrawingImage imageSource;
 
+        private long index = 0;
+
+        private MyTraining1 training = MyTraining1Factory.create1();
 
 
         public MainWindow()
@@ -72,9 +78,9 @@ namespace MyApplication
                 this.drawingGroup = new DrawingGroup();
                 this.imageSource = new DrawingImage(this.drawingGroup);
                 skeletonImageElement.Source = this.imageSource;
+                nextPosture();
             };
             this.Unloaded += (s, e) => this.kinectSensor = null;
-
         }
 
 
@@ -158,6 +164,26 @@ namespace MyApplication
                         if (skel.TrackingState == SkeletonTrackingState.Tracked)
                         {
                             this.DrawBonesAndJoints(skel, dc);
+
+
+                            if (++index % 60 == 0)
+                            {
+                                if(!training.isFinish())
+                                {
+                                    if(PostureRecognition.matches(skel, training.getPosture()))
+                                    {
+                                        LogUtil.log("匹配成功。");
+                                        nextPosture();
+                                    }
+                                    else
+                                    {
+
+                                    }
+
+                                }
+                            }
+
+
                         }
                         else if (skel.TrackingState == SkeletonTrackingState.PositionOnly)
                         {
@@ -180,34 +206,8 @@ namespace MyApplication
 
         private void DiscoverKinectSensor()
         {
-            //KinectSensor.KinectSensors.StatusChanged += KinectSensors_StatusChanged;
             this.kinectSensor = KinectSensor.KinectSensors.FirstOrDefault(x => x.Status == KinectStatus.Connected);
             InitializeKinectSensor(this.kinectSensor);
-        }
-
-        private void KinectSensors_StatusChanged(object sender, StatusChangedEventArgs e)
-        {
-            switch (e.Status)
-            {
-                case KinectStatus.Connected:
-                    if (this.kinectSensor == null)
-                    {
-                        this.kinectSensor = e.Sensor;
-                    }
-                    break;
-                case KinectStatus.Disconnected:
-                    if(this.kinectSensor == e.Sensor)
-                    {
-                        this.kinectSensor = null;
-                        this.kinectSensor = KinectSensor.KinectSensors.FirstOrDefault(x => x.Status == KinectStatus.Connected);
-                    }
-                    if(this.kinectSensor == null)
-                    {
-                        MessageBox.Show("Kinect已拔出");
-                    }
-                    break;
-                
-            }
         }
 
 
@@ -299,7 +299,7 @@ namespace MyApplication
         }
 
         /// Draws indicators to show which edges are clipping skeleton data
-        private static void RenderClippedEdges(Skeleton skeleton, DrawingContext drawingContext)
+        private void RenderClippedEdges(Skeleton skeleton, DrawingContext drawingContext)
         {
             if (skeleton.ClippedEdges.HasFlag(FrameEdges.Bottom))
             {
@@ -334,5 +334,17 @@ namespace MyApplication
             }
         }
 
+        private void nextPosture()
+        {
+            training.next();
+            if(!training.isFinish())
+            {
+                String picPath = training.getPic();
+                templateImageElement.Source = new BitmapImage(new Uri(picPath));
+            }
+        }
+
     }
+
+
 }
