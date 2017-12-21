@@ -182,9 +182,9 @@ namespace MyApplication.Posture
 
     enum PostureType
     {
-        LeftArm,
-        RightArm,
-        Both
+        Both = 0,
+        LeftArm = 1,
+        RightArm = 2
     }
 
 

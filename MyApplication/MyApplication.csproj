@@ -57,8 +57,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Training.cs" />
-    <Compile Include="Utils.cs" />
+    <Compile Include="HttpClient.cs" />
+    <Compile Include="LogUtil.cs" />
+    <Compile Include="MyTraining1.cs" />
+    <Compile Include="ImageUtil.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -74,6 +76,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyTraining1Factory.cs" />
     <Compile Include="Posture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
