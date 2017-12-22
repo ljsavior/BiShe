@@ -1,12 +1,13 @@
-﻿<Window x:Class="MyApplication.MainWindow"
+﻿<Window x:Class="MyApplication.MyWindow.TrainingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="566.448" Width="781.722">
-    <Grid>
-        <Button x:Name="button" Content="训练" HorizontalAlignment="Left" Margin="61,101,0,0" VerticalAlignment="Top" Width="175" Click="open_Training_Window" Height="104" FontSize="35" Style="{DynamicResource btn-success}"/>
+        Title="TrainingWindow" Height="626.357" Width="826.18">
+    <Grid Margin="0,10,0,0">
+        <Frame x:Name="frame" Content="Frame" HorizontalAlignment="Left" Height="566" Margin="10,10,0,0" VerticalAlignment="Top" Width="798" NavigationUIVisibility="Hidden"/>
+
     </Grid>
 </Window>

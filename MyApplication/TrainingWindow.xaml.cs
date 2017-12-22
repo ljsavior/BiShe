@@ -10,34 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MyApplication
+namespace MyApplication.MyWindow
 {
-    using System.Windows;
-    using MyWindow;
+    using MyPage;
 
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// Interaction logic for TrainingWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TrainingWindow : Window
     {
-        private TrainingWindow trainingWindow;
-
-
-        public MainWindow()
+        public TrainingWindow()
         {
             InitializeComponent();
+            showPage(new TrainingPage());
         }
 
-
-        private void open_Training_Window(object sender, RoutedEventArgs e)
+        public void showPage(Page page)
         {
-            trainingWindow = new TrainingWindow();
-            trainingWindow.Show();
+            this.frame.Navigate(page);
         }
     }
-
-
 }

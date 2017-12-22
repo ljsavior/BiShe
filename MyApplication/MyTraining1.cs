@@ -11,11 +11,19 @@ namespace MyApplication.Training
 
     class MyTraining1
     {
+        private const int EachPositionTime = 30;
+
         private List<String> picPathList = new List<String>();
         private List<Posture.Posture> postureList = new List<Posture.Posture>();
         private int index = -1;
+        private int successCount = 0;
+
+        private int currentPostureTime;
+
 
         private List<int> timeUsedList = new List<int>();
+        private List<bool> resultList = new List<bool>();
+
 
         public Boolean isFinish()
         {
@@ -25,6 +33,26 @@ namespace MyApplication.Training
         public void next()
         {
             index++;
+            currentPostureTime = EachPositionTime;
+        }
+
+        public void next(bool success)
+        {
+            if (!success && currentPostureTime != 0)
+            {
+                return;
+            }
+
+            if(success)
+            {
+                successCount++;
+            }
+
+            this.resultList.Add(success);
+            this.timeUsedList.Add(EachPositionTime - currentPostureTime);
+
+            index++;
+            currentPostureTime = EachPositionTime;
         }
 
         public String getPic()
@@ -37,18 +65,20 @@ namespace MyApplication.Training
             return postureList[index];
         }
 
-        public void recordTime(int time)
-        {
-            timeUsedList.Add(time);
-        }
-
-
 
         public List<int> TimeUsedList
         {
             get
             {
                 return timeUsedList;
+            }
+        }
+
+        public List<bool> ResultList
+        {
+            get
+            {
+                return resultList;
             }
         }
 
@@ -60,6 +90,30 @@ namespace MyApplication.Training
             }
         }
 
+        public int Index
+        {
+            get
+            {
+                return index;
+            }
+        }
+
+        public int CurrentPostureTime
+        {
+            get
+            {
+                return currentPostureTime;
+            }
+        }
+
+        public int SuccessCount
+        {
+            get
+            {
+                return successCount;
+            }
+        }
+
         internal List<Posture.Posture> PostureList
         {
             get
@@ -67,6 +121,17 @@ namespace MyApplication.Training
                 return postureList;
             }
         }
+
+        public int countDown()
+        {
+            return --currentPostureTime;
+        }
+
+        public int getProgess()
+        {
+            return 100 * index / postureList.Count;
+        }
+
     }
 
 }
