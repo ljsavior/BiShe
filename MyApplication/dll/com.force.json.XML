@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>com.force.json</name>
+    </assembly>
+    <members>
+        <member name="T:com.force.json.JSONArray">
+            <summary>
+            <para>这是一个JSON数组，用来封装常规的JSON对象</para>
+            <para>使用方法.</para>
+            <para>  JSONArray myArrayList = new JSONArray();</para>
+            <para>  JSONObject obj1 = new JSONObject();</para>
+            <para>  obj1.put(&quot;JSON&quot;, &quot;Hello, World!&quot;);</para>
+            <para>  myArrayList.put(obj1);</para>
+            <para>  myArrayList.toString();</para>
+            <para>---------------</para>
+            <para>输出字符串:</para>
+            <para><code>    [{"JSON": "Hello, World"}]</code>.</para>
+            <para>author: <code>cc_want</code></para>
+            <para>version: <code>1.0.0</code></para>
+            </summary>
+        </member>
+        <member name="M:com.force.json.JSONArray.GetJSONArray(System.Int32)">
+            <summary>
+            根据索引位置，获取JSONArray
+            </summary>
+            <param name="index">索引位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:com.force.json.JSONArray.GetJSONObject(System.Int32)">
+            <summary>
+            根据索引位置，获取JSONObject
+            </summary>
+            <param name="index">索引位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:com.force.json.JSONArray.GetString(System.Int32)">
+            <summary>
+            根据索引位置，获取String
+            </summary>
+            <param name="index">索引位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:com.force.json.JSONArray.IsNull(System.Int32)">
+            <summary>
+            根据索引位置，判断对象是否为空
+            </summary>
+            <param name="index">索引位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:com.force.json.JSONArray.Get(System.Int32)">
+            <summary>
+            根据索引位置，获取对象
+            </summary>
+            <param name="index">索引位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:com.force.json.JSONArray.Length">
+            <summary>
+            获取JSONArray中的对象数量
+            </summary>
+            <returns>对象数量</returns>
+        </member>
+        <member name="M:com.force.json.JSONArray.Put(System.Boolean)">
+            <summary>
+            向JSONArray中插入布尔型对象
+            </summary>
+            <param name="value">Boolean</param>
+            <returns></returns>
+        </member>
+        <member name="M:com.force.json.JSONArray.Put(System.Object)">
+            <summary>
+            向JSONArray中插入对象
+            </summary>
+            <param name="value">对象</param>
+            <returns>JSONArray</returns>
+        </member>
+        <member name="M:com.force.json.JSONArray.Remove(System.Int32)">
+            <summary>
+            根据索引位置移除对象
+            </summary>
+            <param name="index">索引位置</param>
+            <returns>移除状态</returns>
+        </member>
+        <member name="M:com.force.json.JSONArray.ToJSONObject(com.force.json.JSONArray)">
+            <summary>
+            将JSONArray中的值取出转换为JSONObject
+            </summary>
+            <param name="names">JSONArray</param>
+            <returns>JSONObject</returns>
+        </member>
+        <member name="M:com.force.json.JSONArray.ToString">
+            <summary>
+            将JOSNArray转换为字符串
+            </summary>
+            <returns>字符串</returns>
+        </member>
+        <member name="T:com.force.json.JSONObject">
+            <summary>
+            <para>这是一个JSON对象，用来封装常规的JSON字符</para>
+            <para>使用方法.</para>
+            <para>JSONObject myString = new JSONObject();</para>
+             <para>myString.put(&quot;JSON&quot;, &quot;Hello, World!&quot;);</para>
+            <para>myString.toString();</para>
+            <para>---------------</para>
+            <para>输出字符串:<code>{"JSON": "Hello, World"}</code>.</para>
+            <para>author: <code>cc_want</code></para>
+            <para>version: <code>1.0.0</code></para>
+            </summary>
+        </member>
+        <member name="M:com.force.json.JSONObject.GetInt(System.String)">
+            <summary>
+            获取JOSN中的Int对象
+            </summary>
+            <param name="key">键</param>
+            <returns>值</returns>
+        </member>
+        <member name="M:com.force.json.JSONObject.GetString(System.String)">
+            <summary>
+            获取JOSN中的String对象
+            </summary>
+            <param name="key">键</param>
+            <returns>值</returns>
+        </member>
+        <member name="M:com.force.json.JSONObject.GetJSONArray(System.String)">
+            <summary>
+            获取JOSN中的JSONArray对象
+            </summary>
+            <param name="key">键</param>
+            <returns>JSONArray</returns>
+        </member>
+        <member name="M:com.force.json.JSONObject.GetJSONObject(System.String)">
+            <summary>
+            获取JOSN中的JSONObject对象
+            </summary>
+            <param name="key">键</param>
+            <returns>JSONObject</returns>
+        </member>
+        <member name="M:com.force.json.JSONObject.Get(System.String)">
+            <summary>
+            根据key获取JOSN对象的值
+            </summary>
+            <param name="key">键</param>
+            <returns>值</returns>
+        </member>
+        <member name="M:com.force.json.JSONObject.Length">
+            <summary>
+            获取JSON对象的数量
+            </summary>
+            <returns>数量</returns>
+        </member>
+        <member name="M:com.force.json.JSONObject.Put(System.String,System.Object)">
+            <summary>
+            添加JSON对象
+            </summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <returns>JSONObject</returns>
+        </member>
+        <member name="M:com.force.json.JSONObject.Remove(System.String)">
+            <summary>
+            移除JSON对象
+            </summary>
+            <param name="key">键</param>
+        </member>
+        <member name="M:com.force.json.JSONObject.GetKeys">
+            <summary>
+            获取所有的key
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:com.force.json.JSONObject.GetValues">
+            <summary>
+            获取所有的value
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:com.force.json.JSONObject.ToString">
+            <summary>
+            将JSONObject转换为字符串
+            </summary>
+            <returns>JSON字符串</returns>
+        </member>
+        <member name="T:com.force.json.JSONObject.Null">
+            <summary>
+            sonobject.null等效值
+            </summary>
+        </member>
+        <member name="M:com.force.json.JSONObject.Null.Clone">
+            <summary>
+            克隆
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:com.force.json.JSONObject.Null.Equals(System.Object)">
+            <summary>
+            判断是否为Null
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.force.json.JSONObject.Null.ToString">
+            <summary>
+            转换成字符串输出
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:com.force.json.Map`2">
+            <summary>
+            Map键值对
+            </summary>
+            <typeparam name="TKey">键</typeparam>
+            <typeparam name="TValue">值</typeparam>
+        </member>
+        <member name="M:com.force.json.Map`2.Put(`0,`1)">
+            <summary>
+            将指定的键和值添加到Map中
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:com.force.json.Map`2.Get(`0)">
+            <summary>
+            根据键获取Map中的值
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.force.json.Map`2.Remove(`0)">
+            <summary>
+            根据键移除Map中的键/值
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:com.force.json.Map`2.GetSize">
+            <summary>
+            返回Map中的键/值的大小
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:com.force.json.Map`2.GetKeys">
+            <summary>
+            获取键的集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:com.force.json.Map`2.GetValues">
+            <summary>
+            获取值的集合
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
