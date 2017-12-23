@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,10 +63,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataObj.cs" />
     <Compile Include="HttpClient.cs" />
     <Compile Include="LogUtil.cs" />
     <Compile Include="MyTraining1.cs" />
     <Compile Include="ImageUtil.cs" />
+    <Compile Include="SkeletonDataComsumer.cs" />
     <Compile Include="TrainingPage.xaml.cs">
       <DependentUpon>TrainingPage.xaml</DependentUpon>
     </Compile>

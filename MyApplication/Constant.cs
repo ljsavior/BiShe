@@ -10,5 +10,7 @@ namespace MyApplication
     {
         public const String LOG_FILE_PATH = "d:/MyApplication/log/out.log";
         public const String LOG_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss,fff";
+
+        public const String SIMLUATION_EXE_PATH = "d:/MyApplication/3D_Simluation/Simulation.exe";
     }
 }

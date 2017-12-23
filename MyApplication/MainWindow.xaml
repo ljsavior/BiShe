@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="566.448" Width="781.722">
     <Grid>
-        <Button x:Name="button" Content="训练" HorizontalAlignment="Left" Margin="61,101,0,0" VerticalAlignment="Top" Width="175" Click="open_Training_Window" Height="104" FontSize="35" Style="{DynamicResource btn-success}"/>
+        <Button x:Name="TrainingButton" Content="训练" HorizontalAlignment="Left" Margin="287,101,0,0" VerticalAlignment="Top" Width="175" Click="open_Training_Window" Height="104" FontSize="35" Style="{DynamicResource btn-success}"/>
+        <Button x:Name="SimulationButton" Content="三维仿真" HorizontalAlignment="Left" Margin="58,101,0,0" VerticalAlignment="Top" Width="175" Click="start_Simulation" Height="104" FontSize="35" Style="{DynamicResource btn-info}"/>
     </Grid>
 </Window>

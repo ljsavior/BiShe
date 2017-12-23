@@ -5,90 +5,87 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MyApplication"
       mc:Ignorable="d"
-      Title="TrainingPage" Width="799" Height="568">
+      Title="TrainingPage" Width="1100" Height="568">
 
     <Grid Margin="0,0,10,10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="346" />
-            <RowDefinition Height="220" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="700"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ContentControl Grid.Row="0" Grid.Column="0" Style="{StaticResource panel-info}" Margin="5">
+        <ContentControl Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Style="{StaticResource panel-info}" Margin="5">
             <StackPanel>
                 <ContentControl Style="{StaticResource panel-heading-info}" Content="目标动作"/>
                 <ContentControl Style="{StaticResource panel-body}">
-                    <Image Grid.Row="0" Grid.Column="0" x:Name="targetImageElement" HorizontalAlignment="Left" Height="240" Margin="10,2,10,2" VerticalAlignment="Top" Width="320"/>
+                    <Image Grid.Row="0" Grid.Column="0" x:Name="targetImageElement" HorizontalAlignment="Left" Height="480" Margin="10,2,10,2" VerticalAlignment="Top" Width="640"/>
                 </ContentControl>
             </StackPanel>
         </ContentControl>
 
-        <ContentControl Grid.Row="0" Grid.Column="1" Style="{StaticResource panel-info}" Margin="5">
-            <StackPanel>
-                <ContentControl Style="{StaticResource panel-heading-info}" Content="当前动作"/>
-                <ContentControl Style="{StaticResource panel-body}">
-                    <Image Grid.Row="0" Grid.Column="1" x:Name="colorImageElement" HorizontalAlignment="Left" Height="240" Margin="10,2,10,2" VerticalAlignment="Top" Width="320"/>
-                </ContentControl>
-            </StackPanel>
-        </ContentControl>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"></RowDefinition>
+                <RowDefinition Height="220"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <ContentControl Grid.Row="1" Grid.Column="0" Style="{StaticResource panel-success}" Margin="5" Height="200">
-            <StackPanel>
-                <ContentControl Style="{StaticResource panel-heading-success}" Content="训练设置"/>
-                <ContentControl Style="{StaticResource panel-body}">
-                    <StackPanel>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
+            <ContentControl Grid.Row="0" Grid.Column="0" Style="{StaticResource panel-success}" Margin="5" Height="170">
+                <StackPanel>
+                    <ContentControl Style="{StaticResource panel-heading-success}" Content="训练设置"/>
+                    <ContentControl Style="{StaticResource panel-body}">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
 
-                            <ComboBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
-                                <ComboBoxItem>训练1</ComboBoxItem>
-                                <ComboBoxItem>训练2</ComboBoxItem>
-                            </ComboBox>
-                            <Button Grid.Row="1" Grid.Column="0" Margin="5" Content="开始训练" Style="{DynamicResource btn-success}" HorizontalAlignment="Right" Click="Start_Training"></Button>
-                            <Button Grid.Row="1" Grid.Column="1" Margin="5" Content="结束训练" Style="{DynamicResource btn-danger}" HorizontalAlignment="Left" Click="Stop_Training"></Button>
-                        </Grid>
-                        
-                    </StackPanel>
-                </ContentControl>
-            </StackPanel>
-        </ContentControl>
+                                <ComboBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
+                                    <ComboBoxItem>训练1</ComboBoxItem>
+                                    <ComboBoxItem>训练2</ComboBoxItem>
+                                </ComboBox>
+                                <Button Grid.Row="1" Grid.Column="0" Margin="5" Content="开始训练" Style="{DynamicResource btn-success}" HorizontalAlignment="Right" Click="Start_Training"></Button>
+                                <Button Grid.Row="1" Grid.Column="1" Margin="5" Content="结束训练" Style="{DynamicResource btn-danger}" HorizontalAlignment="Left" Click="Stop_Training"></Button>
+                            </Grid>
 
-        <ContentControl Grid.Row="1" Grid.Column="1" Style="{StaticResource panel-warning}" Margin="5" Height="200">
-            <StackPanel>
-                <ContentControl Style="{StaticResource panel-heading-warning}" Content="训练情况"/>
-                <ContentControl Style="{StaticResource panel-body}">
-                    <StackPanel>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="60" />
-                                <RowDefinition Height="75" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="115"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="115"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <ProgressBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" x:Name="TrainingProgress" Value="0" Style="{DynamicResource progress-bar-success}" Margin="0,5,5,5" Height="40"></ProgressBar>
-                            <Label Grid.Row="1" Grid.Column="0" Content="剩余时间：" Style="{DynamicResource h4}" HorizontalAlignment="Right"></Label>
-                            <Label Grid.Row="1" Grid.Column="1" x:Name="TimeLabel" Content="" Style="{DynamicResource h4}" HorizontalAlignment="Left"></Label>
-                            <Label Grid.Row="1" Grid.Column="2" Content="完成情况：" Style="{DynamicResource h4}" HorizontalAlignment="Right"></Label>
-                            <Label Grid.Row="1" Grid.Column="3" x:Name="StatusLabel" Content="" Style="{DynamicResource h4}" HorizontalAlignment="Left"></Label>
-                        </Grid>
-                    </StackPanel>
-                </ContentControl>
-            </StackPanel>
-        </ContentControl>
+                        </StackPanel>
+                    </ContentControl>
+                </StackPanel>
+            </ContentControl>
+
+            <ContentControl Grid.Row="1" Grid.Column="0" Style="{StaticResource panel-warning}" Margin="5" Height="215">
+                <StackPanel>
+                    <ContentControl Style="{StaticResource panel-heading-warning}" Content="训练情况"/>
+                    <ContentControl Style="{StaticResource panel-body}">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="75" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="115"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="115"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <ProgressBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" x:Name="TrainingProgress" Value="0" Style="{DynamicResource progress-bar-success}" Margin="0,5,5,5" Height="40"></ProgressBar>
+                                <Label Grid.Row="1" Grid.Column="0" Content="剩余时间：" Style="{DynamicResource h4}" HorizontalAlignment="Right"></Label>
+                                <Label Grid.Row="1" Grid.Column="1" x:Name="TimeLabel" Content="" Style="{DynamicResource h4}" HorizontalAlignment="Left"></Label>
+                                <Label Grid.Row="1" Grid.Column="2" Content="完成情况：" Style="{DynamicResource h4}" HorizontalAlignment="Right"></Label>
+                                <Label Grid.Row="1" Grid.Column="3" x:Name="StatusLabel" Content="" Style="{DynamicResource h4}" HorizontalAlignment="Left"></Label>
+                            </Grid>
+                        </StackPanel>
+                    </ContentControl>
+                </StackPanel>
+            </ContentControl>
+        </Grid>
 
     </Grid>
 </Page>

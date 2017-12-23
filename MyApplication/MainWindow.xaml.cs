@@ -18,6 +18,8 @@ namespace MyApplication
     using System.Windows;
     using MyWindow;
 
+    using System.Diagnostics;
+
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
@@ -36,6 +38,11 @@ namespace MyApplication
         {
             trainingWindow = new TrainingWindow();
             trainingWindow.Show();
+        }
+
+        private void start_Simulation(object sender, RoutedEventArgs e)
+        {
+            Process p = Process.Start(Constant.SIMLUATION_EXE_PATH);
         }
     }
 

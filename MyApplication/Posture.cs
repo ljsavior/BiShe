@@ -8,12 +8,13 @@ namespace MyApplication.Posture
 {
     using Microsoft.Kinect;
 
-    class PostureRecognition
+    public class PostureRecognition
     {
         /// <summary>
         /// 余弦相似度阈值，当两向量的余弦相似度不小于此值时，两余弦匹配
         /// </summary>
-        private const double THRESHOLD = 0.8;
+        private const double THRESHOLD = 0.9;
+
 
         private static List<VectorType> leftArmVectorTypeList = new List<VectorType>(2);
         private static List<VectorType> rightArmVectorTypeList = new List<VectorType>(2);
@@ -130,12 +131,22 @@ namespace MyApplication.Posture
             PostureType postureType = posture.Type;
             Posture pos = computePosture(skeleton, postureType);
 
-            List<VectorType> vectorTypeList = getVectorTypeList(postureType);
+            return matches(pos, posture);
+        }
+
+        public static bool matches(Posture pos1, Posture pos2)
+        {
+            if (pos1.Type != pos2.Type)
+            {
+                return false;
+            }
+
+            List<VectorType> vectorTypeList = getVectorTypeList(pos1.Type);
 
             foreach (VectorType index in vectorTypeList)
             {
-                double cosineSimilarity = computeCosineSimilarity(pos.getVector(index), posture.getVector(index));
-                if(cosineSimilarity < THRESHOLD)
+                double cosineSimilarity = computeCosineSimilarity(pos1.getVector(index), pos2.getVector(index));
+                if (cosineSimilarity < THRESHOLD)
                 {
                     return false;
                 }
@@ -146,7 +157,7 @@ namespace MyApplication.Posture
     }
 
 
-    class Posture
+    public class Posture
     {
         private PostureType type;
         private Vector[] vectors = new Vector[4];
@@ -155,6 +166,16 @@ namespace MyApplication.Posture
         public Posture(PostureType type)
         {
             this.type = type;
+        }
+
+        public Posture(PostureType type, double[][] vectors)
+        {
+            this.type = type;
+            List<VectorType> types = PostureRecognition.getVectorTypeList(type);
+            for(int i = 0; i < types.Count; i++)
+            {
+                setVector(types[i], new Vector(vectors[i][0], vectors[i][1], vectors[i][2]));
+            }
         }
 
         public void setVector(VectorType vectorType, Vector vector)
@@ -180,7 +201,7 @@ namespace MyApplication.Posture
     }
 
 
-    enum PostureType
+    public enum PostureType
     {
         Both = 0,
         LeftArm = 1,
@@ -188,7 +209,7 @@ namespace MyApplication.Posture
     }
 
 
-    enum VectorType
+    public enum VectorType
     {
         ShoulderElbowLeft = 0,
         ElbowWristLeft = 1,
@@ -197,7 +218,7 @@ namespace MyApplication.Posture
     }
 
 
-    class Vector
+    public class Vector
     {
         private double x;
         private double y;

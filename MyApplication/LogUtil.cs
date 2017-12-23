@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace MyApplication.Utils
 {
@@ -13,14 +13,14 @@ namespace MyApplication.Utils
     {
         private static System.Collections.Concurrent.BlockingCollection<String> messageQueue = new System.Collections.Concurrent.BlockingCollection<String>();
 
-        private static System.Threading.Thread logThread;
+        private static Thread logThread;
 
         static LogUtil()
         {
-            logThread = new System.Threading.Thread(() => {
+            logThread = new Thread(() => {
                 using (StreamWriter sw = new StreamWriter(Constant.LOG_FILE_PATH, true))
                 {
-                    while (logThread.IsAlive)
+                    while (Thread.CurrentThread.IsAlive)
                     {
                         try
                         {
