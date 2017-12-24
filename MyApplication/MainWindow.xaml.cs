@@ -34,7 +34,7 @@ namespace MyApplication
         }
 
 
-        private void open_Training_Window(object sender, RoutedEventArgs e)
+        private void open_TrainingWindow(object sender, RoutedEventArgs e)
         {
             trainingWindow = new TrainingWindow();
             trainingWindow.Show();
@@ -44,6 +44,36 @@ namespace MyApplication
         {
             Process p = Process.Start(Constant.SIMLUATION_EXE_PATH);
         }
+
+        private void open_LoginWindow(object sender, RoutedEventArgs e)
+        {
+            new LoginWindow().Show();
+        }
+
+        private void open_PostureCollectWindow(object sender, RoutedEventArgs e)
+        {
+            new PostureCollectWindow().Show();
+        }
+
+        private void open_DataCollectWindow(object sender, RoutedEventArgs e)
+        {
+            Process p = Process.Start(Constant.DATA_COLLECT_EXE_PATH);
+        }
+
+
+
+        private void do_Test(object sender, RoutedEventArgs e)
+        {
+            Service.Service service = new Service.Service();
+            String[] names = service.getTrainingNames();
+            foreach (String name in names)
+            {
+                Utils.LogUtil.log(name);
+            }
+
+
+        }
+
     }
 
 

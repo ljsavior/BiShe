@@ -65,9 +65,23 @@
     </ApplicationDefinition>
     <Compile Include="DataObj.cs" />
     <Compile Include="HttpClient.cs" />
+    <Compile Include="LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginService.cs" />
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LogUtil.cs" />
     <Compile Include="MyTraining1.cs" />
     <Compile Include="ImageUtil.cs" />
+    <Compile Include="PostureCollectPage.xaml.cs">
+      <DependentUpon>PostureCollectPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PostureCollectWindow.xaml.cs">
+      <DependentUpon>PostureCollectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service.cs" />
     <Compile Include="SkeletonDataComsumer.cs" />
     <Compile Include="TrainingPage.xaml.cs">
       <DependentUpon>TrainingPage.xaml</DependentUpon>
@@ -75,6 +89,14 @@
     <Compile Include="TrainingWindow.xaml.cs">
       <DependentUpon>TrainingWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -91,6 +113,14 @@
     <Page Include="PathGeometries\Glyphicons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PostureCollectPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PostureCollectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\BaseStyle.xaml">
       <Generator>MSBuild:Compile</Generator>

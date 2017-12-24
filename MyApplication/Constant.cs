@@ -11,6 +11,20 @@ namespace MyApplication
         public const String LOG_FILE_PATH = "d:/MyApplication/log/out.log";
         public const String LOG_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss,fff";
 
+
         public const String SIMLUATION_EXE_PATH = "d:/MyApplication/3D_Simluation/Simulation.exe";
+
+        public const String DATA_COLLECT_EXE_PATH = "d:/MyApplication/DataCollect/Operator.exe";
+
+
+
+        public const String SERVER_HOST = "http://120.27.93.16:8080/design-web";
+
+        public const String SERVER_LOGIN_URL = SERVER_HOST + "/client/login.json";
+
+        public const String SERVIER_GET_TRAINING_NAME_LIST_URL = SERVER_HOST + "/client/training/nameList.json";
+
+        public const String SERVER_TRAINING_RECORD_UPDATE_URL = SERVER_HOST + "/client/trainingRecord/upload.json";
+
     }
 }

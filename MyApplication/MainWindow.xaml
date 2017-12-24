@@ -5,9 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="566.448" Width="781.722">
+        Title="康复训练" Height="566.448" Width="781.722">
     <Grid>
-        <Button x:Name="TrainingButton" Content="训练" HorizontalAlignment="Left" Margin="287,101,0,0" VerticalAlignment="Top" Width="175" Click="open_Training_Window" Height="104" FontSize="35" Style="{DynamicResource btn-success}"/>
-        <Button x:Name="SimulationButton" Content="三维仿真" HorizontalAlignment="Left" Margin="58,101,0,0" VerticalAlignment="Top" Width="175" Click="start_Simulation" Height="104" FontSize="35" Style="{DynamicResource btn-info}"/>
+        <Button x:Name="TestButton" Content="登录" HorizontalAlignment="Left" Margin="56,101,0,0" VerticalAlignment="Top" Width="175" Click="open_LoginWindow" Height="104" FontSize="35" Style="{DynamicResource btn-success}"/>
+
+        <Button x:Name="SimulationButton" Content="三维仿真" HorizontalAlignment="Left" Margin="296,101,0,0" VerticalAlignment="Top" Width="175" Click="start_Simulation" Height="104" FontSize="35" Style="{DynamicResource btn-info}"/>
+
+        <Button x:Name="TrainingButton" Content="训练" HorizontalAlignment="Left" Margin="533,101,0,0" VerticalAlignment="Top" Width="175" Click="open_TrainingWindow" Height="104" FontSize="35" Style="{DynamicResource btn-warning}"/>
+
+        <Button x:Name="PostureCollectButton" Content="动作采集" HorizontalAlignment="Left" Margin="56,303,0,0" VerticalAlignment="Top" Width="175" Click="open_PostureCollectWindow" Height="104" FontSize="35" Style="{DynamicResource btn-primary}"/>
+
+        <Button x:Name="DataCollectButton" Content="数据采集" HorizontalAlignment="Left" Margin="298,303,0,0" VerticalAlignment="Top" Width="175" Click="open_DataCollectWindow" Height="104" FontSize="35" Style="{DynamicResource btn-danger}"/>
+
+
     </Grid>
 </Window>

@@ -20,6 +20,7 @@ namespace MyApplication.MyPage
     using Training;
     using System.Timers;
     using Data;
+    using Service;
 
     /// <summary>
     /// Interaction logic for TrainingPage.xaml
@@ -32,6 +33,7 @@ namespace MyApplication.MyPage
 
         private Timer timer = new Timer();
 
+        private Service service = new Service();
 
 
         public TrainingPage()
@@ -39,8 +41,6 @@ namespace MyApplication.MyPage
             InitializeComponent();
 
             this.Loaded += (s, e) => {
-                //DiscoverKinectSensor();
-                //nextPosture();
                 this.timer.Elapsed += new ElapsedEventHandler(TimerCountDown);
                 this.timer.Interval = 1000;
 
@@ -129,6 +129,9 @@ namespace MyApplication.MyPage
 
             timer.Stop();
             consumer.stop();
+
+            service.uploadTrainingRecord(TrainingNameSelect.Text, training.TimeUsedList, training.ResultList);
+
         }
 
         public void PostureDataReady(Posture posture)

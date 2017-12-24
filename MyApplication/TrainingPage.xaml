@@ -46,9 +46,8 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
 
-                                <ComboBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
+                                <ComboBox x:Name="TrainingNameSelect" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
                                     <ComboBoxItem>训练1</ComboBoxItem>
-                                    <ComboBoxItem>训练2</ComboBoxItem>
                                 </ComboBox>
                                 <Button Grid.Row="1" Grid.Column="0" Margin="5" Content="开始训练" Style="{DynamicResource btn-success}" HorizontalAlignment="Right" Click="Start_Training"></Button>
                                 <Button Grid.Row="1" Grid.Column="1" Margin="5" Content="结束训练" Style="{DynamicResource btn-danger}" HorizontalAlignment="Left" Click="Stop_Training"></Button>

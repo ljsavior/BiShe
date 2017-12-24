@@ -33,10 +33,10 @@ namespace MyApplication.Data
 
         private void initChannel()
         {
-            channel = new IpcClientChannel();
-            ChannelServices.RegisterChannel(channel, false);
             try
             {
+                channel = new IpcClientChannel();
+                ChannelServices.RegisterChannel(channel, false);
                 dataObj = (DataObj)Activator.GetObject(typeof(DataObj), "ipc://ServerChannel/DataObj");
             }
             catch (Exception e)
@@ -59,10 +59,10 @@ namespace MyApplication.Data
                     LogUtil.log("clear: " + count);
                     while (Thread.CurrentThread.IsAlive)
                     {
-                        double[][] vectors = dataObj.receive();
-                        Posture pos = new Posture(PostureType.Both, vectors);
                         try
                         {
+                            double[][] vectors = dataObj.receive();
+                            Posture pos = new Posture(PostureType.Both, vectors);
                             trainingPage.Dispatcher.Invoke(new Action(() => trainingPage.PostureDataReady(pos)));
                         } catch(Exception e)
                         {
@@ -79,7 +79,14 @@ namespace MyApplication.Data
         {
             try
             {
-                consumeThread.Interrupt();
+                consumeThread.Abort();
+            } catch(Exception e)
+            {
+                LogUtil.log(e.Message);
+            }
+            try
+            {
+                ChannelServices.UnregisterChannel(channel);
             } catch(Exception e)
             {
                 LogUtil.log(e.Message);

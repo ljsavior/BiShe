@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace MyApplication.Posture
 {
     using Microsoft.Kinect;
+    using com.force.json;
 
     public class PostureRecognition
     {
@@ -159,8 +160,18 @@ namespace MyApplication.Posture
 
     public class Posture
     {
+        private static Dictionary<VectorType, String> vectorTypeMap = new Dictionary<VectorType, String>();
+
         private PostureType type;
         private Vector[] vectors = new Vector[4];
+
+        static Posture()
+        {
+            vectorTypeMap.Add(VectorType.ShoulderElbowLeft, "ShoulderElbowLeft");
+            vectorTypeMap.Add(VectorType.ElbowWristLeft, "ElbowWristLeft");
+            vectorTypeMap.Add(VectorType.ShoulderElbowRight, "ShoulderElbowRight");
+            vectorTypeMap.Add(VectorType.ElbowWristRight, "ElbowWristRight");
+        }
 
 
         public Posture(PostureType type)
@@ -196,6 +207,25 @@ namespace MyApplication.Posture
             {
                 return type;
             }
+        }
+
+        public String toJsonString()
+        {
+            JSONObject jsonObject = new JSONObject();
+            List<VectorType> typeList = PostureRecognition.getVectorTypeList(this.type);
+            foreach(VectorType t in typeList)
+            {
+                Vector v = getVector(t);
+                if(v != null)
+                {
+                    JSONArray jsonArray = new JSONArray();
+                    jsonArray.Put(v.X);
+                    jsonArray.Put(v.Y);
+                    jsonArray.Put(v.Z);
+                    jsonObject.Put(vectorTypeMap[t], jsonArray);
+                }
+            }
+            return jsonObject.ToString();
         }
 
     }
