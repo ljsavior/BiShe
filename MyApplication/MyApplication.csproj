@@ -64,6 +64,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataObj.cs" />
+    <Compile Include="DataProducerPage.xaml.cs">
+      <DependentUpon>DataProducerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataProducerWindow.xaml.cs">
+      <DependentUpon>DataProducerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataMessageQueue.cs" />
     <Compile Include="HttpClient.cs" />
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -89,6 +96,14 @@
     <Compile Include="TrainingWindow.xaml.cs">
       <DependentUpon>TrainingWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="DataProducerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataProducerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -207,6 +222,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Content\glyphicons-halflings-regular.svg" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

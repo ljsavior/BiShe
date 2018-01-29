@@ -19,8 +19,8 @@ namespace MyApplication.Data
     {
         private TrainingPage trainingPage;
 
-        private IpcClientChannel channel;
-        private DataObj dataObj;
+        //private DataMessageQueue messageQueue = new ServerChannelDataMessageQueue();
+        private DataMessageQueue messageQueue = CommonDataMessageQueue.getInstance();
 
         private static Thread consumeThread;
 
@@ -33,46 +33,31 @@ namespace MyApplication.Data
 
         private void initChannel()
         {
-            try
-            {
-                channel = new IpcClientChannel();
-                ChannelServices.RegisterChannel(channel, false);
-                dataObj = (DataObj)Activator.GetObject(typeof(DataObj), "ipc://ServerChannel/DataObj");
-            }
-            catch (Exception e)
-            {
-                LogUtil.log("DataObj 获取异常");
-            }
-            if (dataObj == null)
-            {
-                LogUtil.log("DataObj 获取失败，为null");
-            }
+            messageQueue.init();
 
         }
 
         public void start()
         {
-            if (dataObj != null)
-            {
-                consumeThread = new Thread(() => {
-                    int count = dataObj.clear();
-                    LogUtil.log("clear: " + count);
-                    while (Thread.CurrentThread.IsAlive)
+            consumeThread = new Thread(() => {
+                int count = messageQueue.clear();
+                LogUtil.log("clear: " + count);
+                while (Thread.CurrentThread.IsAlive)
+                {
+                    try
                     {
-                        try
-                        {
-                            double[][] vectors = dataObj.receive();
-                            Posture pos = new Posture(PostureType.Both, vectors);
-                            trainingPage.Dispatcher.Invoke(new Action(() => trainingPage.PostureDataReady(pos)));
-                        } catch(Exception e)
-                        {
-                            LogUtil.log(e.Message);
-                        }
+                        double[][] vectors = messageQueue.poll();
+                        //LogUtil.log(vectors.ToString());
+                        Posture pos = new Posture(PostureType.Both, vectors);
+                        trainingPage.Dispatcher.Invoke(new Action(() => trainingPage.PostureDataReady(pos)));
+                    } catch(Exception e)
+                    {
+                        LogUtil.log(e.Message);
                     }
-                });
-                consumeThread.IsBackground = true;
-                consumeThread.Start();
-            }
+                }
+            });
+            consumeThread.IsBackground = true;
+            consumeThread.Start();
         }
 
         public void stop()
@@ -84,13 +69,7 @@ namespace MyApplication.Data
             {
                 LogUtil.log(e.Message);
             }
-            try
-            {
-                ChannelServices.UnregisterChannel(channel);
-            } catch(Exception e)
-            {
-                LogUtil.log(e.Message);
-            }
+            messageQueue.release();
             consumeThread = null;
         }
 

@@ -17,6 +17,8 @@
 
         <Button x:Name="DataCollectButton" Content="数据采集" HorizontalAlignment="Left" Margin="298,303,0,0" VerticalAlignment="Top" Width="175" Click="open_DataCollectWindow" Height="104" FontSize="35" Style="{DynamicResource btn-danger}"/>
 
+        <Button x:Name="DataProducerButton" Content="Producer" HorizontalAlignment="Left" Margin="534,303,0,0" VerticalAlignment="Top" Width="175" Click="open_DataProducerWindow" Height="104" FontSize="35" Style="{DynamicResource btn-danger}"/>
+
 
     </Grid>
 </Window>
