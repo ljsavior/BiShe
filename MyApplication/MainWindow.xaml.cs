@@ -60,6 +60,11 @@ namespace MyApplication
             Process p = Process.Start(Constant.DATA_COLLECT_EXE_PATH);
         }
 
+        private void open_ActionTrainingWindow(object sender, RoutedEventArgs e)
+        {
+            new ActionTrainingWindow().Show();
+        }
+
         private void open_DataProducerWindow(object sender, RoutedEventArgs e)
         {
             new DataProducerWindow().Show();

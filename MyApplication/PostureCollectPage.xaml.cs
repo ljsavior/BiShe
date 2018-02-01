@@ -17,8 +17,10 @@ namespace MyApplication.MyPage
 {
     using Microsoft.Kinect;
     using System.Windows.Media;
+    using System.Threading;
     using Posture;
     using Utils;
+    using Data;
 
     /// <summary>
     /// PostureCollectPage.xaml 的交互逻辑
@@ -71,6 +73,9 @@ namespace MyApplication.MyPage
 
 
 
+        private ActionData actionData;
+
+        private bool actionState = false;
 
 
         public PostureCollectPage()
@@ -177,8 +182,20 @@ namespace MyApplication.MyPage
                         if (skel.TrackingState == SkeletonTrackingState.Tracked)
                         {
                             this.DrawBonesAndJoints(skel, dc);
+                            
 
-                            if(++index == 30)
+                            index++;
+
+                            if(actionState && (index % 3 == 0))
+                            {
+                                BitmapSource colorFrame = (BitmapSource)this.colorImageElement.Source;
+                                //BitmapSource skeletonFrame = (BitmapSource)this.skeletonImageElement.Source;
+
+
+                                actionData.add(colorFrame, null, skel);
+                            }
+
+                            if (index == 30)
                             {
                                 index = 0;
                                 Posture posture = PostureRecognition.computePosture(skel, PostureType.Both);
@@ -332,6 +349,34 @@ namespace MyApplication.MyPage
         private void do_Collect(object sender, RoutedEventArgs e)
         {
             pause = !pause;
+        }
+
+        private void doAction(object sender, RoutedEventArgs e)
+        {
+            actionState = !actionState;
+            if(actionState)
+            {
+                actionData = new ActionData();
+                Action_Button.Content = "结束";
+            } else
+            {
+                Action_Button.Content = "开始";
+            }
+        }
+
+        private void saveActionData(object sender, RoutedEventArgs e)
+        {
+            if(!actionState && actionData != null)
+            {
+                try
+                {
+                    actionData.saveToFile(Constant.ACTION_DATA_FILE_DIR_PATH);
+                }
+                catch (Exception ex)
+                {
+                    LogUtil.log("Action Data Save Exception. " + ex.Message);
+                }
+            }
         }
     }
 }

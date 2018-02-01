@@ -17,6 +17,9 @@ namespace MyApplication
         public const String DATA_COLLECT_EXE_PATH = "d:/MyApplication/DataCollect/Operator.exe";
 
 
+        public const String ACTION_DATA_FILE_DIR_PATH = "d:/MyApplication/ActionData/";
+
+
 
         public const String SERVER_HOST = "http://120.27.93.16:8080/design-web";
 

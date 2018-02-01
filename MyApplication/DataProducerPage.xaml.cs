@@ -171,7 +171,7 @@ namespace MyApplication.MyPage
                             this.DrawBonesAndJoints(skel, dc);
 
                             //发送数据
-                            messageQueue.offer(computeData(skel));
+                            messageQueue.offer(CommonUtil.computeVectors(skel));
 
                         }
                         else if (skel.TrackingState == SkeletonTrackingState.PositionOnly)
@@ -313,34 +313,6 @@ namespace MyApplication.MyPage
                     null,
                     new Rect(RenderWidth - ClipBoundsThickness, 0, ClipBoundsThickness, RenderHeight));
             }
-        }
-
-
-        private double[][] computeData(Skeleton skeleton)
-        {
-            Joint joint0 = skeleton.Joints[JointType.ShoulderLeft];
-            Joint joint1 = skeleton.Joints[JointType.ElbowLeft];
-            double[] vectorShoulderElbowLeft = computeVector(joint0, joint1);
-
-            joint0 = skeleton.Joints[JointType.ElbowLeft];
-            joint1 = skeleton.Joints[JointType.WristLeft];
-            double[] vectorElbowWristLeft = computeVector(joint0, joint1);
-
-            joint0 = skeleton.Joints[JointType.ShoulderRight];
-            joint1 = skeleton.Joints[JointType.ElbowRight];
-            double[] vectorShoulderElbowRight = computeVector(joint0, joint1);
-
-            joint0 = skeleton.Joints[JointType.ElbowRight];
-            joint1 = skeleton.Joints[JointType.WristRight];
-            double[] vectorElbowWristRight = computeVector(joint0, joint1);
-
-
-            return new double[][] { vectorShoulderElbowLeft, vectorElbowWristLeft, vectorShoulderElbowRight, vectorElbowWristRight };
-        }
-
-        private double[] computeVector(Joint joint0, Joint joint1)
-        {
-            return new double[] { joint1.Position.X - joint0.Position.X, joint1.Position.Y - joint0.Position.Y, joint1.Position.Z - joint0.Position.Z };
         }
 
     }

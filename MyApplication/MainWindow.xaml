@@ -7,17 +7,19 @@
         mc:Ignorable="d"
         Title="康复训练" Height="566.448" Width="781.722">
     <Grid>
-        <Button x:Name="TestButton" Content="登录" HorizontalAlignment="Left" Margin="56,101,0,0" VerticalAlignment="Top" Width="175" Click="open_LoginWindow" Height="104" FontSize="35" Style="{DynamicResource btn-success}"/>
+        <Button x:Name="TestButton" Content="登录" HorizontalAlignment="Left" Margin="56,49,0,0" VerticalAlignment="Top" Width="175" Click="open_LoginWindow" Height="104" FontSize="35" Style="{DynamicResource btn-success}"/>
 
-        <Button x:Name="SimulationButton" Content="三维仿真" HorizontalAlignment="Left" Margin="296,101,0,0" VerticalAlignment="Top" Width="175" Click="start_Simulation" Height="104" FontSize="35" Style="{DynamicResource btn-info}"/>
+        <Button x:Name="SimulationButton" Content="三维仿真" HorizontalAlignment="Left" Margin="296,49,0,0" VerticalAlignment="Top" Width="175" Click="start_Simulation" Height="104" FontSize="35" Style="{DynamicResource btn-info}"/>
 
-        <Button x:Name="TrainingButton" Content="训练" HorizontalAlignment="Left" Margin="533,101,0,0" VerticalAlignment="Top" Width="175" Click="open_TrainingWindow" Height="104" FontSize="35" Style="{DynamicResource btn-warning}"/>
+        <Button x:Name="TrainingButton" Content="姿势训练" HorizontalAlignment="Left" Margin="533,49,0,0" VerticalAlignment="Top" Width="175" Click="open_TrainingWindow" Height="104" FontSize="35" Style="{DynamicResource btn-warning}"/>
 
-        <Button x:Name="PostureCollectButton" Content="动作采集" HorizontalAlignment="Left" Margin="56,303,0,0" VerticalAlignment="Top" Width="175" Click="open_PostureCollectWindow" Height="104" FontSize="35" Style="{DynamicResource btn-primary}"/>
+        <Button x:Name="PostureCollectButton" Content="动作采集" HorizontalAlignment="Left" Margin="56,213,0,0" VerticalAlignment="Top" Width="175" Click="open_PostureCollectWindow" Height="104" FontSize="35" Style="{DynamicResource btn-primary}"/>
 
-        <Button x:Name="DataCollectButton" Content="数据采集" HorizontalAlignment="Left" Margin="298,303,0,0" VerticalAlignment="Top" Width="175" Click="open_DataCollectWindow" Height="104" FontSize="35" Style="{DynamicResource btn-danger}"/>
+        <Button x:Name="DataCollectButton" Content="数据采集" HorizontalAlignment="Left" Margin="298,213,0,0" VerticalAlignment="Top" Width="175" Click="open_DataCollectWindow" Height="104" FontSize="35" Style="{DynamicResource btn-danger}"/>
 
-        <Button x:Name="DataProducerButton" Content="Producer" HorizontalAlignment="Left" Margin="534,303,0,0" VerticalAlignment="Top" Width="175" Click="open_DataProducerWindow" Height="104" FontSize="35" Style="{DynamicResource btn-danger}"/>
+        <Button x:Name="ActionTrainingButton" Content="动作训练" HorizontalAlignment="Left" Margin="533,213,0,0" VerticalAlignment="Top" Width="175" Click="open_ActionTrainingWindow" Height="104" FontSize="35" Style="{DynamicResource btn-warning}"/>
+
+        <Button x:Name="DataProducerButton" Content="Producer" HorizontalAlignment="Left" Margin="56,373,0,0" VerticalAlignment="Top" Width="175" Click="open_DataProducerWindow" Height="104" FontSize="35" Style="{DynamicResource btn-danger}"/>
 
 
     </Grid>

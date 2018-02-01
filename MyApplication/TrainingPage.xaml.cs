@@ -44,7 +44,13 @@ namespace MyApplication.MyPage
                 this.timer.Elapsed += new ElapsedEventHandler(TimerCountDown);
                 this.timer.Interval = 1000;
 
-                this.consumer = new SkeletonDataComsumer(this);
+                //DataMessageQueue messageQueue = new ServerChannelDataMessageQueue();
+                DataMessageQueue messageQueue = CommonDataMessageQueue.getInstance();
+
+                this.consumer = new SkeletonDataComsumer(messageQueue, (vectors) => {
+                    Posture pos = new Posture(PostureType.Both, vectors);
+                    Dispatcher.Invoke(() => PostureDataReady(pos));
+                });
             };
 
             this.Unloaded += (s, e) => {

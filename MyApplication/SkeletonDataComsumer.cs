@@ -4,29 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-using System.Runtime.Remoting;
-using System.Runtime.Remoting.Channels;
-using System.Runtime.Remoting.Channels.Ipc;
-
 
 namespace MyApplication.Data
 {
     using Utils;
-    using MyPage;
-    using Posture;
 
     class SkeletonDataComsumer
     {
-        private TrainingPage trainingPage;
+        private DataMessageQueue messageQueue;
 
-        //private DataMessageQueue messageQueue = new ServerChannelDataMessageQueue();
-        private DataMessageQueue messageQueue = CommonDataMessageQueue.getInstance();
+        private Action<double[][]> action;
 
         private static Thread consumeThread;
 
-        public SkeletonDataComsumer(TrainingPage trainingPage)
+        public SkeletonDataComsumer(DataMessageQueue messageQueue, Action<double[][]> action)
         {
-            this.trainingPage = trainingPage;
+            this.messageQueue = messageQueue;
+            this.action = action;
 
             initChannel();
         }
@@ -47,9 +41,10 @@ namespace MyApplication.Data
                     try
                     {
                         double[][] vectors = messageQueue.poll();
-                        //LogUtil.log(vectors.ToString());
-                        Posture pos = new Posture(PostureType.Both, vectors);
-                        trainingPage.Dispatcher.Invoke(new Action(() => trainingPage.PostureDataReady(pos)));
+                        //LogUtil.log(CommonUtil.arrayToString(vectors));
+
+                        action(vectors);
+
                     } catch(Exception e)
                     {
                         LogUtil.log(e.Message);
@@ -72,7 +67,6 @@ namespace MyApplication.Data
             messageQueue.release();
             consumeThread = null;
         }
-
 
     }
 }

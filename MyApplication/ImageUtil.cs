@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace MyApplication.Utils
 {
@@ -11,15 +12,22 @@ namespace MyApplication.Utils
 
     class ImageUtil
     {
-        public static System.Drawing.Image ImageWpfToGDI(ImageSource image)
+        public static void saveBitMapSourceToFile(BitmapSource source, String path)
         {
-            MemoryStream ms = new MemoryStream();
-            var encoder = new System.Windows.Media.Imaging.BmpBitmapEncoder();
-            encoder.Frames.Add(System.Windows.Media.Imaging.BitmapFrame.Create(image as System.Windows.Media.Imaging.BitmapSource));
-            encoder.Save(ms);
-            ms.Flush();
-            return System.Drawing.Image.FromStream(ms);
+            saveBitmapFrameToFile(BitmapFrame.Create(source), path);
         }
+
+
+        public static void saveBitmapFrameToFile(BitmapFrame frame, String path)
+        {
+            var encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(frame);
+            using (FileStream stream = new FileStream(path, FileMode.Create))
+            {
+                encoder.Save(stream);
+            }
+        }
+
     }
     
 }

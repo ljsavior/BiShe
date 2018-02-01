@@ -46,12 +46,16 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="650"/>
+                                <ColumnDefinition Width="500"/>
+                                <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <TextBox x:Name="Text_PostureData" Grid.Column="0" Height="Auto" TextWrapping="Wrap" Margin="0,0,10,-91"/>
                             <Button Grid.Column="1" Content="采集" Click="do_Collect" Style="{DynamicResource btn-success}" Margin="10,17,10,-17" Width="75"></Button>
                             <Button Grid.Column="1" Content="保存" Style="{DynamicResource btn-danger}" Margin="10,76,10,-76" Width="75"></Button>
+
+                            <Button x:Name="Action_Button" Grid.Column="2" Content="开始" Click="doAction" Style="{DynamicResource btn-success}" Margin="10,17,10,-17" Width="75"></Button>
+                            <Button Grid.Column="2" Content="保存" Click="saveActionData" Style="{DynamicResource btn-danger}" Margin="10,76,10,-76" Width="75"></Button>
                         </Grid>
                     </StackPanel>
                 </ContentControl>
