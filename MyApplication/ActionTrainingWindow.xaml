@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyApplication"
         mc:Ignorable="d"
-        Title="ActionTrainingWindow" Height="300" Width="300">
+        Title="动作训练" Height="300" Width="300">
     <Grid>
         
     </Grid>

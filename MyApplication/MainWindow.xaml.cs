@@ -70,6 +70,10 @@ namespace MyApplication
             new DataProducerWindow().Show();
         }
 
+        private void open_OtherFunctionWindow(object sender, RoutedEventArgs e)
+        {
+            new OtherFunctionWindow().Show();
+        }
 
 
         private void do_Test(object sender, RoutedEventArgs e)
@@ -80,7 +84,6 @@ namespace MyApplication
             {
                 Utils.LogUtil.log(name);
             }
-
 
         }
         

@@ -49,7 +49,7 @@ namespace MyApplication.Data
 
         public double[][] getVectorData()
         {
-            return CommonUtil.computeVectors(skeletonDataList[index]);
+            return ActionRecognitionUtil.computeVectors(skeletonDataList[index]);
         }
 
         public void saveToFile(String dirPath)

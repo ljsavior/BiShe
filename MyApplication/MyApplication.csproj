@@ -45,6 +45,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,6 +65,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ActionData.cs" />
+    <Compile Include="ActionRecognitionUtil.cs" />
+    <Compile Include="DTWResult.cs" />
+    <Compile Include="MyActionSegmentData.cs" />
     <Compile Include="ActionTrainingWindow.xaml.cs">
       <DependentUpon>ActionTrainingWindow.xaml</DependentUpon>
     </Compile>
@@ -85,8 +89,12 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LogUtil.cs" />
+    <Compile Include="MySkeleton.cs" />
     <Compile Include="MyTraining1.cs" />
     <Compile Include="ImageUtil.cs" />
+    <Compile Include="OtherFunctionWindow.xaml.cs">
+      <DependentUpon>OtherFunctionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PostureCollectPage.xaml.cs">
       <DependentUpon>PostureCollectPage.xaml</DependentUpon>
     </Compile>
@@ -134,6 +142,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OtherFunctionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PathGeometries\Glyphicons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

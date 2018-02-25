@@ -21,6 +21,8 @@
 
         <Button x:Name="DataProducerButton" Content="Producer" HorizontalAlignment="Left" Margin="56,373,0,0" VerticalAlignment="Top" Width="175" Click="open_DataProducerWindow" Height="104" FontSize="35" Style="{DynamicResource btn-danger}"/>
 
+        <Button x:Name="OtherFunctionButton" Content="其它功能" HorizontalAlignment="Left" Margin="298,373,0,0" VerticalAlignment="Top" Width="175" Click="open_OtherFunctionWindow" Height="104" FontSize="35" Style="{DynamicResource btn-primary}"/>
+
 
     </Grid>
 </Window>

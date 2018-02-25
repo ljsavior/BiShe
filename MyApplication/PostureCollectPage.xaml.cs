@@ -186,7 +186,7 @@ namespace MyApplication.MyPage
 
                             index++;
 
-                            if(actionState && (index % 3 == 0))
+                            if(actionState)
                             {
                                 BitmapSource colorFrame = (BitmapSource)this.colorImageElement.Source;
                                 //BitmapSource skeletonFrame = (BitmapSource)this.skeletonImageElement.Source;
@@ -371,6 +371,7 @@ namespace MyApplication.MyPage
                 try
                 {
                     actionData.saveToFile(Constant.ACTION_DATA_FILE_DIR_PATH);
+                    MessageBox.Show("save done");
                 }
                 catch (Exception ex)
                 {

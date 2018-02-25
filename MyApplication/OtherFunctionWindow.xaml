@@ -1,0 +1,15 @@
+﻿<Window x:Class="MyApplication.MyWindow.OtherFunctionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyApplication"
+        mc:Ignorable="d"
+        Title="其它功能" Height="359.551" Width="617.978">
+    <Grid>
+        <Button x:Name="DrawSkeletonButton" Content="绘制骨骼图" Click="DrawSkeleton" Style="{DynamicResource btn-success}" Margin="49,36,449,244" Width="112" Height="50"/>
+        <Button x:Name="ActionRecognizationButton" Content="动作匹配" Click="ActionRecognization" Style="{DynamicResource btn-info}" Margin="194,36,304,244" Width="112" Height="50"/>
+        <Button x:Name="TestButton" Content="测试" Click="doTest" Style="{DynamicResource btn-danger}" Margin="341,36,157,244" Width="112" Height="50"/>
+        
+    </Grid>
+</Window>

@@ -44,12 +44,7 @@ namespace MyApplication.Posture
         /// <returns></returns>
         private static double computeCosineSimilarity(Vector v1, Vector v2)
         {
-            //分子
-            double numerator = v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
-            //分母
-            double denominator = Math.Sqrt(v1.X * v1.X + v1.Y * v1.Y + v1.Z * v1.Z) * Math.Sqrt(v2.X * v2.X + v2.Y * v2.Y + v2.Z * v2.Z);
-
-            return numerator / denominator;
+            return Utils.ActionRecognitionUtil.computeCosineSimilarity(v1.X, v1.Y, v1.Z, v2.X, v2.Y, v2.Z);
         }
 
         /// <summary>

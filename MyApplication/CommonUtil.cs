@@ -8,11 +8,16 @@ namespace MyApplication.Utils
 {
     using Microsoft.Kinect;
     using com.force.json;
+    using Data;
+    using System.Drawing;
 
     class CommonUtil
     {
         public static Dictionary<JointType, String> jointTypeNameMap = new Dictionary<JointType, string>();
         public static Dictionary<JointTrackingState, String> jointTrackingStateNameMap = new Dictionary<JointTrackingState, string>();
+
+        public static Dictionary<String, JointType> jointTypeNameReverseMap = new Dictionary<string, JointType>();
+        public static Dictionary<String, JointTrackingState> jointTrackingStateNameReverseMap = new Dictionary<string, JointTrackingState>();
 
         static CommonUtil()
         {
@@ -42,37 +47,32 @@ namespace MyApplication.Utils
             jointTrackingStateNameMap.Add(JointTrackingState.Inferred, "Inferred");
             jointTrackingStateNameMap.Add(JointTrackingState.Tracked, "Tracked");
 
+
+            jointTypeNameReverseMap.Add("HipCenter", JointType.HipCenter);
+            jointTypeNameReverseMap.Add("Spine", JointType.Spine);
+            jointTypeNameReverseMap.Add("ShoulderCenter", JointType.ShoulderCenter);
+            jointTypeNameReverseMap.Add("Head", JointType.Head);
+            jointTypeNameReverseMap.Add("ShoulderLeft", JointType.ShoulderLeft);
+            jointTypeNameReverseMap.Add("ElbowLeft", JointType.ElbowLeft);
+            jointTypeNameReverseMap.Add("WristLeft", JointType.WristLeft);
+            jointTypeNameReverseMap.Add("HandLeft", JointType.HandLeft);
+            jointTypeNameReverseMap.Add("ShoulderRight", JointType.ShoulderRight);
+            jointTypeNameReverseMap.Add("ElbowRight", JointType.ElbowRight);
+            jointTypeNameReverseMap.Add("WristRight", JointType.WristRight);
+            jointTypeNameReverseMap.Add("HandRight", JointType.HandRight);
+            jointTypeNameReverseMap.Add("HipLeft", JointType.HipLeft);
+            jointTypeNameReverseMap.Add("KneeLeft", JointType.KneeLeft);
+            jointTypeNameReverseMap.Add("AnkleLeft", JointType.AnkleLeft);
+            jointTypeNameReverseMap.Add("FootLeft", JointType.FootLeft);
+            jointTypeNameReverseMap.Add("HipRight", JointType.HipRight);
+            jointTypeNameReverseMap.Add("KneeRight", JointType.KneeRight);
+            jointTypeNameReverseMap.Add("AnkleRight", JointType.AnkleRight);
+            jointTypeNameReverseMap.Add("FootRight", JointType.FootRight);
+
+            jointTrackingStateNameReverseMap.Add("NotTracked", JointTrackingState.NotTracked);
+            jointTrackingStateNameReverseMap.Add("Inferred", JointTrackingState.Inferred);
+            jointTrackingStateNameReverseMap.Add("Tracked", JointTrackingState.Tracked);
         }
-
-
-
-        public static double[][] computeVectors(Skeleton skeleton)
-        {
-            Joint joint0 = skeleton.Joints[JointType.ShoulderLeft];
-            Joint joint1 = skeleton.Joints[JointType.ElbowLeft];
-            double[] vectorShoulderElbowLeft = computeVector(joint0, joint1);
-
-            joint0 = skeleton.Joints[JointType.ElbowLeft];
-            joint1 = skeleton.Joints[JointType.WristLeft];
-            double[] vectorElbowWristLeft = computeVector(joint0, joint1);
-
-            joint0 = skeleton.Joints[JointType.ShoulderRight];
-            joint1 = skeleton.Joints[JointType.ElbowRight];
-            double[] vectorShoulderElbowRight = computeVector(joint0, joint1);
-
-            joint0 = skeleton.Joints[JointType.ElbowRight];
-            joint1 = skeleton.Joints[JointType.WristRight];
-            double[] vectorElbowWristRight = computeVector(joint0, joint1);
-
-
-            return new double[][] { vectorShoulderElbowLeft, vectorElbowWristLeft, vectorShoulderElbowRight, vectorElbowWristRight };
-        }
-
-        private static double[] computeVector(Joint joint0, Joint joint1)
-        {
-            return new double[] { joint1.Position.X - joint0.Position.X, joint1.Position.Y - joint0.Position.Y, joint1.Position.Z - joint0.Position.Z };
-        }
-
 
 
         public static String arrayToString(double[] array)
@@ -130,6 +130,29 @@ namespace MyApplication.Utils
             obj.Put("Position", array);
 
             return obj;
+        }
+
+        public static MySkeleton jsonStrToMySkeleton(String jsonStr)
+        {
+            MySkeleton skel = new MySkeleton();
+
+            JSONArray array = new JSONArray(jsonStr);
+            for(int i = 0; i < array.Length(); i++)
+            {
+                JSONObject jointObj = array.GetJSONObject(i);
+                JSONArray positionArray = jointObj.GetJSONArray("Position");
+
+                JointType jointType = jointTypeNameReverseMap[jointObj.GetString("JointType")];
+                JointTrackingState trackingState = jointTrackingStateNameReverseMap[jointObj.GetString("TrackingState")];
+                SkeletonPoint position = new SkeletonPoint();
+                position.X = float.Parse(positionArray.GetString(0));
+                position.Y = float.Parse(positionArray.GetString(1));
+                position.Z = float.Parse(positionArray.GetString(2));
+
+                skel.Joints[jointType] = new MyJoint(jointType, position, trackingState);
+            }
+
+            return skel;
         }
 
     }

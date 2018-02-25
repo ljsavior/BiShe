@@ -171,7 +171,7 @@ namespace MyApplication.MyPage
                             this.DrawBonesAndJoints(skel, dc);
 
                             //发送数据
-                            messageQueue.offer(CommonUtil.computeVectors(skel));
+                            messageQueue.offer(ActionRecognitionUtil.computeVectors(skel));
 
                         }
                         else if (skel.TrackingState == SkeletonTrackingState.PositionOnly)
