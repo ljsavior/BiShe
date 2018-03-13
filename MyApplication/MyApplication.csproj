@@ -67,6 +67,12 @@
     <Compile Include="ActionData.cs" />
     <Compile Include="ActionRecognitionUtil.cs" />
     <Compile Include="DTWResult.cs" />
+    <Compile Include="GameTrainingPage.xaml.cs">
+      <DependentUpon>GameTrainingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GameTrainingWindow.xaml.cs">
+      <DependentUpon>GameTrainingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyActionSegmentData.cs" />
     <Compile Include="ActionTrainingWindow.xaml.cs">
       <DependentUpon>ActionTrainingWindow.xaml</DependentUpon>
@@ -118,6 +124,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DataProducerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GameTrainingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GameTrainingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

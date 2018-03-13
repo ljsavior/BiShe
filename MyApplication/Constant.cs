@@ -16,6 +16,8 @@ namespace MyApplication
 
         public const String DATA_COLLECT_EXE_PATH = "d:/MyApplication/DataCollect/Operator.exe";
 
+        public const String GAME_EXE_PATH = "d:/MyApplication/Race/Race.exe";
+
 
         public const String ACTION_DATA_FILE_DIR_PATH = "d:/MyApplication/ActionData/";
 

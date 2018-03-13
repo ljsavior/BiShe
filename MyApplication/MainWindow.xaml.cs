@@ -86,7 +86,11 @@ namespace MyApplication
             }
 
         }
-        
+
+        private void open_GameTrainingWindow(object sender, RoutedEventArgs e)
+        {
+            new GameTrainingWindow().Show();
+        }
     }
 
 
