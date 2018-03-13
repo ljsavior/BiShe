@@ -15,11 +15,11 @@ namespace MyApplication.Training
         {
             MyTraining1 training = new MyTraining1();
 
-            using (StreamReader sr = new StreamReader("d:/MyApplication/data/data.txt"))
+            using (StreamReader sr = new StreamReader("d:/MyApplication/data/data1/data.txt"))
             {
-                for (int i = 1; i <= 7; i++)
+                for (int i = 1; i <= 9; i++)
                 {
-                    training.PicPathList.Add("d:/MyApplication/data/" + i + "_color.jpg");
+                    training.PicPathList.Add("d:/MyApplication/data/data1/" + i + "_color.jpg");
 
                     Posture pos = new Posture(PostureType.Both);
                     List<VectorType> vectorTypeList = PostureRecognition.getVectorTypeList(PostureType.Both);
@@ -36,6 +36,7 @@ namespace MyApplication.Training
 
             return training;
         }
+
 
     }
 }
