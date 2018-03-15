@@ -10,25 +10,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MyApplication.MyWindow
+namespace MyApplication.MyPage
 {
     /// <summary>
-    /// Interaction logic for ActionTrainingWindow.xaml
+    /// Interaction logic for ActionTrainingPage.xaml
     /// </summary>
-    public partial class ActionTrainingWindow : Window
+    public partial class ActionTrainingPage : Page
     {
-        public ActionTrainingWindow()
+        public ActionTrainingPage()
         {
             InitializeComponent();
-
-            showPage(new MyPage.ActionTrainingPage());
         }
 
-        public void showPage(Page page)
+
+        private void Start_Training(object sender, RoutedEventArgs e)
         {
-            this.frame.Navigate(page);
+
+        }
+
+        private void Stop_Training(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

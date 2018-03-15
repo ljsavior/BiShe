@@ -36,6 +36,7 @@ namespace MyApplication
 
         private void open_TrainingWindow(object sender, RoutedEventArgs e)
         {
+            GlobalVariable.messageQueueInterval = 15;
             trainingWindow = new TrainingWindow();
             trainingWindow.Show();
         }
@@ -52,16 +53,13 @@ namespace MyApplication
 
         private void open_PostureCollectWindow(object sender, RoutedEventArgs e)
         {
+            GlobalVariable.messageQueueInterval = 30;
             new PostureCollectWindow().Show();
-        }
-
-        private void open_DataCollectWindow(object sender, RoutedEventArgs e)
-        {
-            Process p = Process.Start(Constant.DATA_COLLECT_EXE_PATH);
         }
 
         private void open_ActionTrainingWindow(object sender, RoutedEventArgs e)
         {
+            GlobalVariable.messageQueueInterval = 3;
             new ActionTrainingWindow().Show();
         }
 
@@ -89,6 +87,7 @@ namespace MyApplication
 
         private void open_GameTrainingWindow(object sender, RoutedEventArgs e)
         {
+            GlobalVariable.messageQueueInterval = 15;
             new GameTrainingWindow().Show();
         }
     }

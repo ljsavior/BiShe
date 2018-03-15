@@ -67,12 +67,17 @@ namespace MyApplication.MyPage
         private DataMessageQueue messageQueue;
 
 
+        private bool sendToSimulation = false;
+        private VectorSender vectorSender;
+
+
+
         public DataProducerPage()
         {
             InitializeComponent();
 
             this.Loaded += (s, e) => {
-                messageQueue = CommonDataMessageQueue.getInstance(30);
+                messageQueue = CommonDataMessageQueue.getInstance(GlobalVariable.messageQueueInterval);
 
                 DiscoverKinectSensor();
                 this.drawingGroup = new DrawingGroup();
@@ -89,6 +94,12 @@ namespace MyApplication.MyPage
                 {
                     messageQueue.release();
                     messageQueue = null;
+                }
+
+                if(vectorSender != null)
+                {
+                    vectorSender.stop();
+                    vectorSender = null;
                 }
             };
         }
@@ -112,8 +123,8 @@ namespace MyApplication.MyPage
                 kinectSensor.SkeletonStream.Enable();
                 kinectSensor.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(kinectSensor_SkeletonFrameReady);
 
-                kinectSensor.SkeletonStream.TrackingMode = SkeletonTrackingMode.Default;
-                //kinectSensor.SkeletonStream.TrackingMode = SkeletonTrackingMode.Seated;
+                //kinectSensor.SkeletonStream.TrackingMode = SkeletonTrackingMode.Default;
+                kinectSensor.SkeletonStream.TrackingMode = SkeletonTrackingMode.Seated;
             }
         }
 
@@ -170,8 +181,16 @@ namespace MyApplication.MyPage
                         {
                             this.DrawBonesAndJoints(skel, dc);
 
+                            double[][] vectors = ActionRecognitionUtil.computeVectors(skel);
+
                             //发送数据
-                            messageQueue.offer(ActionRecognitionUtil.computeVectors(skel));
+                            messageQueue.offer(vectors);
+
+                            //发送数据2
+                            if(sendToSimulation)
+                            {
+                                vectorSender.send(vectors);
+                            }
 
                         }
                         else if (skel.TrackingState == SkeletonTrackingState.PositionOnly)
@@ -315,5 +334,32 @@ namespace MyApplication.MyPage
             }
         }
 
+        private void SendToSimulation(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if(sendToSimulation)
+                {
+                    SendButton.Content = "发送到仿真";
+                    if (vectorSender != null)
+                    {
+                        vectorSender.stop();
+                        vectorSender = null;
+                    }
+                    
+                } else
+                {
+                    SendButton.Content = "停止发送";
+                    vectorSender = new VectorSender();
+                    vectorSender.start();
+                }
+
+            } catch(Exception ex)
+            {
+                LogUtil.log(ex.Message);
+            }
+
+            sendToSimulation = !sendToSimulation;
+        }
     }
 }

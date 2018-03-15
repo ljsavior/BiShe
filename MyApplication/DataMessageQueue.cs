@@ -107,12 +107,7 @@ namespace MyApplication.Data
         {
         }
 
-        public static CommonDataMessageQueue getInstance()
-        {
-            return getInstance(-1);
-        }
-
-        public static CommonDataMessageQueue getInstance(int interval)
+        public static CommonDataMessageQueue getInstance(int interval = -1)
         {
             if(interval > 0)
             {
@@ -164,4 +159,5 @@ namespace MyApplication.Data
             return Interlocked.Increment(ref count);
         }
     }
+
 }

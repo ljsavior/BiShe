@@ -14,8 +14,6 @@ namespace MyApplication
 
         public const String SIMLUATION_EXE_PATH = "d:/MyApplication/3D_Simluation/Simulation.exe";
 
-        public const String DATA_COLLECT_EXE_PATH = "d:/MyApplication/DataCollect/Operator.exe";
-
         public const String GAME_EXE_PATH = "d:/MyApplication/Race/Race.exe";
 
 

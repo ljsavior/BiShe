@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyApplication"
         mc:Ignorable="d"
-        Title="DataProducer" Height="390" Width="840">
+        Title="Kinect数据采集" Height="390" Width="840">
     <Grid>
         <Frame x:Name="frame" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
