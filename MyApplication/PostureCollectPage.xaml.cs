@@ -73,7 +73,7 @@ namespace MyApplication.MyPage
 
 
 
-        private ActionData actionData;
+        private ActionDataCollect actionData;
 
         private bool actionState = false;
 
@@ -356,7 +356,7 @@ namespace MyApplication.MyPage
             actionState = !actionState;
             if(actionState)
             {
-                actionData = new ActionData();
+                actionData = new ActionDataCollect();
                 Action_Button.Content = "结束";
             } else
             {

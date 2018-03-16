@@ -64,12 +64,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ActionData.cs" />
+    <Compile Include="ActionDataCollect.cs" />
+    <Compile Include="ActionMatchingUtil.cs" />
     <Compile Include="ActionRecognitionUtil.cs" />
+    <Compile Include="ActionData.cs" />
     <Compile Include="ActionTrainingPage.xaml.cs">
       <DependentUpon>ActionTrainingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="DTWResult.cs" />
+    <Compile Include="DTWUtil.cs" />
     <Compile Include="GameTrainingPage.xaml.cs">
       <DependentUpon>GameTrainingPage.xaml</DependentUpon>
     </Compile>
@@ -99,6 +102,7 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LogUtil.cs" />
+    <Compile Include="MyActionTraining.cs" />
     <Compile Include="MySkeleton.cs" />
     <Compile Include="MyTraining1.cs" />
     <Compile Include="ImageUtil.cs" />

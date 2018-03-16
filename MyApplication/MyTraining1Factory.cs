@@ -8,6 +8,8 @@ namespace MyApplication.Training
 {
     using System.IO;
     using Posture;
+    using Data;
+    using Utils;
 
     class MyTraining1Factory
     {
@@ -38,5 +40,17 @@ namespace MyApplication.Training
         }
 
 
+
+        public static MyActionTraining createActionTraining()
+        {
+            ActionData action1 = ActionMatchingUtil.loadActionDataFromFile("d:/MyApplication/ActionData/1517659759365/", 69, 107);
+            ActionData action2 = ActionMatchingUtil.loadActionDataFromFile("d:/MyApplication/ActionData/1517658799185/", 70, 115); 
+
+
+            MyActionTraining training = new MyActionTraining();
+            training.addActions(action1, action2);
+
+            return training;
+        }
     }
 }
