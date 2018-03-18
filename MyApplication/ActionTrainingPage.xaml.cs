@@ -34,6 +34,8 @@ namespace MyApplication.MyPage
 
         private volatile ActionImgPlayer player;
 
+        private ActionMatcher actionMatcher = new ActionMatcher();
+
 
         public ActionTrainingPage()
         {
@@ -69,6 +71,7 @@ namespace MyApplication.MyPage
             if (!training.isFinish())
             {
                 player.setAction(training.getActionData());
+                actionMatcher.init(training.getActionData());
             }
             player.start();
 
@@ -104,6 +107,7 @@ namespace MyApplication.MyPage
             if (!training.isFinish())
             {
                 player.setAction(training.getActionData());
+                actionMatcher.init(training.getActionData());
             }
             else
             {
@@ -147,13 +151,11 @@ namespace MyApplication.MyPage
         {
             if (!training.isFinish())
             {
-                /*
-                if (PostureRecognition.matches(posture, training.getPosture()))
+                if(actionMatcher.onData(vector))
                 {
-                    LogUtil.log("匹配成功。");
+                    LogUtil.log("动作匹配成功。");
                     nextPosture(true);
                 }
-                */
             }
         }
 
@@ -204,18 +206,29 @@ namespace MyApplication.MyPage
         {
             lock(this)
             {
-                if (idx < 0)
+                BitmapImage res = null;
+                if(idx < -30)
                 {
-                    return null;
+
+                } else if(idx < 0)
+                {
+                    res = actionData.imageList[0];
+                } else if(idx < actionData.imageList.Count)
+                {
+                    res = actionData.imageList[idx];
+                } else if(idx < actionData.imageList.Count + 30)
+                {
+                    res = actionData.imageList[actionData.imageList.Count - 1];
+                } else if(idx < actionData.imageList.Count + 60)
+                {
+
                 } else
                 {
-                    BitmapImage img = actionData.imageList[idx];
-                    if(++idx == actionData.imageList.Count)
-                    {
-                        idx = -60;
-                    }
-                    return img;
+                    idx = -60;
                 }
+                idx++;
+
+                return res;
             }
         }
 
@@ -228,6 +241,102 @@ namespace MyApplication.MyPage
             }
         }
 
+
+
+    }
+
+    class ActionMatcher
+    {
+        private bool preStart = false;
+        private bool start = false;
+
+        private LinkedList<double[][]> vectorList = new LinkedList<double[][]>();
+
+        private ActionData actionData;
+
+        private Posture.Posture startPosture;
+
+        private Posture.Posture prePosture;
+
+        private int matchCount = 0;
+
+        public void init(ActionData action)
+        {
+            actionData = action;
+            preStart = false;
+            start = false;
+            vectorList.Clear();
+            startPosture = new Posture.Posture(Posture.PostureType.Both, action.dataList[0]);
+            matchCount = 0;
+        }
+
+        public bool onData(double[][] vectorData)
+        {
+            Posture.Posture currentPosture = new Posture.Posture(Posture.PostureType.Both, vectorData);
+            if (!preStart)
+            {
+                if(Posture.PostureRecognition.matches(currentPosture, startPosture))
+                {
+                    vectorList.AddLast(vectorData);
+                    preStart = true;
+                    prePosture = currentPosture;
+
+                    LogUtil.log("动作预开始");
+                }
+                return false;
+            }
+
+            if(!start && !Posture.PostureRecognition.matches(currentPosture, startPosture))
+            {
+                start = true;
+                LogUtil.log("动作开始");
+            }
+
+            if(!start)
+            {
+                return false;
+            }
+
+            vectorList.AddLast(vectorData);
+
+            if(Posture.PostureRecognition.matches(currentPosture, prePosture))
+            {
+                matchCount++;
+            } else
+            {
+                matchCount = 0;
+                prePosture = currentPosture;
+            }
+
+
+            if (matchCount > 15)
+            {
+                LogUtil.log("动作结束");
+
+                int length = vectorList.Count - 15;
+                List<double[][]> data = new List<double[][]>(length);
+
+                int i = 0;
+                foreach(double[][] v in vectorList)
+                {
+                    if(i++ == length)
+                    {
+                        break;
+                    }
+                    data.Add(v);
+                }
+
+                ActionData acData = ActionMatchingUtil.loadActionData(data);
+
+
+                LogUtil.log(actionData.dataList.Count + "," + acData.dataList.Count);
+                bool result = ActionMatchingUtil.match(actionData, acData);
+                init(actionData);
+                return result;
+            }
+
+            return false;
+        }
 
 
     }

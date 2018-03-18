@@ -12,7 +12,7 @@ namespace MyApplication
         public const String LOG_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss,fff";
 
 
-        public const String SIMLUATION_EXE_PATH = "d:/MyApplication/3D_Simluation/Simulation.exe";
+        public const String SIMLUATION_EXE_PATH = "D:/MyApplication/RealTimeSimulation/simulation.exe";
 
         public const String GAME_EXE_PATH = "d:/MyApplication/Race/Race.exe";
 

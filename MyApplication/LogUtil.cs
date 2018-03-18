@@ -15,12 +15,14 @@ namespace MyApplication.Utils
 
         private static Thread logThread;
 
+        private static volatile bool state = true;
+
         static LogUtil()
         {
             logThread = new Thread(() => {
                 using (StreamWriter sw = new StreamWriter(Constant.LOG_FILE_PATH, true))
                 {
-                    while (Thread.CurrentThread.IsAlive)
+                    while (state)
                     {
                         try
                         {

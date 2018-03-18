@@ -17,6 +17,8 @@ namespace MyApplication.Data
 
         private static Thread consumeThread;
 
+        private volatile bool state = false;
+
         public SkeletonDataComsumer(DataMessageQueue messageQueue, Action<double[][]> action)
         {
             this.messageQueue = messageQueue;
@@ -33,10 +35,11 @@ namespace MyApplication.Data
 
         public void start()
         {
+            state = true;
             consumeThread = new Thread(() => {
                 int count = messageQueue.clear();
                 LogUtil.log("clear: " + count);
-                while (Thread.CurrentThread.IsAlive)
+                while (state)
                 {
                     try
                     {
@@ -59,7 +62,7 @@ namespace MyApplication.Data
         {
             try
             {
-                consumeThread.Abort();
+                state = false;
             } catch(Exception e)
             {
                 LogUtil.log(e.Message);

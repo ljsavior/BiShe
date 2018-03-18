@@ -96,6 +96,7 @@ namespace MyApplication.MyPage
                 String picPath = training.getPic();
                 targetImageElement.Source = new BitmapImage(new Uri(picPath));
             }
+            consumer.start();
 
         }
 

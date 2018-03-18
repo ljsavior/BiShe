@@ -13,7 +13,8 @@ namespace MyApplication.Utils
         public static double[,] computeSimilarityMatrix(ActionData action1, ActionData action2)
         {
             List<double[][]> dataList1 = preDeal(action1.dataList);
-            List<double[][]> dataList2 = preDeal(action2.dataList);
+            //List<double[][]> dataList2 = preDeal(action2.dataList);
+            List<double[][]> dataList2 = action2.dataList;
 
             int row = dataList1.Count;
             int col = dataList2.Count;
@@ -145,6 +146,22 @@ namespace MyApplication.Utils
         private static double[] computeVector(double[] from, double[] to)
         {
             return new double[] { to[0] - from[0], to[1] - from[1], to[2] - from[2] };
+        }
+
+        public static bool match(ActionData action1, ActionData action2)
+        {
+            double[,] similarityMatrix = ActionMatchingUtil.computeSimilarityMatrix(action1, action2);
+            DTWResult dtwResult = DTWUtil.DTW(similarityMatrix);
+
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("result:\n");
+            sb.Append("Similarity:").Append(dtwResult.SumSimilarity).Append(", AvgSimilarity:").Append(dtwResult.AvgSimilarity).Append(", PathLength:").Append(dtwResult.PathLength).Append('\n');
+            sb.Append(dtwResult.PathStr);
+            LogUtil.log(sb.ToString());
+
+
+            return dtwResult.AvgSimilarity < 0.03;
         }
     }
 }
