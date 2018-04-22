@@ -42,7 +42,7 @@ namespace MyApplication.MyPage
             }
 
             bool loginStatus = Service.LoginService.getInstance().login(username, password);
-            MessageBox.Show(loginStatus ? "登录成功" : "登录失败");
+            MessageBox.Show(loginStatus ? "登录成功" : "登录失败!用户名或密码错误.");
             if(loginStatus)
             {
                 loginWindow.Close();

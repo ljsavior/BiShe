@@ -8,6 +8,7 @@ namespace MyApplication.Service
 {
     using Http;
     using com.force.json;
+    using Utils;
 
     class LoginService
     {

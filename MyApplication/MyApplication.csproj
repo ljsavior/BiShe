@@ -117,6 +117,9 @@
     </Compile>
     <Compile Include="Service.cs" />
     <Compile Include="SkeletonDataComsumer.cs" />
+    <Compile Include="TemplateCollectPage.xaml.cs">
+      <DependentUpon>TemplateCollectPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TrainingPage.xaml.cs">
       <DependentUpon>TrainingPage.xaml</DependentUpon>
     </Compile>
@@ -240,6 +243,10 @@
     <Page Include="Styles\Window.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TemplateCollectPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TrainingPage.xaml">
       <SubType>Designer</SubType>

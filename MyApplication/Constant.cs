@@ -21,7 +21,7 @@ namespace MyApplication
 
 
 
-        public const String SERVER_HOST = "http://120.27.93.16:8080/design-web";
+        public const String SERVER_HOST = "http://39.105.38.80:8080";
 
         public const String SERVER_LOGIN_URL = SERVER_HOST + "/client/login.json";
 

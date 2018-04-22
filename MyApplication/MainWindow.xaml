@@ -9,7 +9,7 @@
     <Grid>
         <Button x:Name="TestButton" Content="登录" HorizontalAlignment="Left" Margin="56,49,0,0" VerticalAlignment="Top" Width="175" Click="open_LoginWindow" Height="104" FontSize="35" Style="{DynamicResource btn-success}"/>
 
-        <Button x:Name="DataProducerButton" Content="连接Kinect" HorizontalAlignment="Left" Margin="298,49,0,0" VerticalAlignment="Top" Width="175" Click="open_DataProducerWindow" Height="104" FontSize="30" Style="{DynamicResource btn-danger}"/>
+        <Button x:Name="DataProducerButton" Content="数据采集" HorizontalAlignment="Left" Margin="298,49,0,0" VerticalAlignment="Top" Width="175" Click="open_DataProducerWindow" Height="104" FontSize="30" Style="{DynamicResource btn-danger}"/>
         
         <Button x:Name="SimulationButton" Content="三维仿真" HorizontalAlignment="Left" Margin="533,49,0,0" VerticalAlignment="Top" Width="175" Click="start_Simulation" Height="104" FontSize="35" Style="{DynamicResource btn-info}"/>
 

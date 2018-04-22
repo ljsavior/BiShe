@@ -25,7 +25,8 @@ namespace MyApplication.MyWindow
         {
             InitializeComponent();
 
-            showPage(new PostureCollectPage());
+            //showPage(new PostureCollectPage());
+            showPage(new TemplateCollectPage());
         }
 
         public void showPage(Page page)
