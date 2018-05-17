@@ -27,7 +27,7 @@ namespace MyApplication.MyPage
     /// </summary>
     public partial class TrainingPage : Page
     {
-        private MyTraining1 training;
+        private MyPostureTraining training;
 
         private SkeletonDataComsumer consumer;
 

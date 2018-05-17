@@ -9,7 +9,7 @@ namespace MyApplication.Training
 {
     using System.IO;
 
-    class MyTraining1
+    class MyPostureTraining
     {
         private const int EachPositionTime = 30;
 

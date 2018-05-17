@@ -34,7 +34,7 @@ namespace MyApplication.MyPage
     /// </summary>
     public partial class GameTrainingPage : Page
     {
-        private MyTraining1 training;
+        private MyPostureTraining training;
 
         private Socket serverSocket;
         private Socket socket;

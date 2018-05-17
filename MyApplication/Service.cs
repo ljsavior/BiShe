@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace MyApplication.Service
 {
@@ -49,7 +50,7 @@ namespace MyApplication.Service
                 resultArray.Put(res ? 1 : 0);
             }
 
-            String resStr = httpClient.Url(Constant.SERVER_TRAINING_RECORD_UPDATE_URL)
+            String resStr = httpClient.Url(Constant.SERVER_TRAINING_RECORD_UPLOAD_URL)
                 .Param("userId", loginService.UserId.ToString())
                 .Param("trainingName", trainingName)
                 .Param("trainingType", trainingType.ToString())
@@ -61,11 +62,29 @@ namespace MyApplication.Service
 
         }
 
-        public void uploadPosture(String name, String data, String mark)
+        public bool uploadPosture(String name, BitmapSource img, double[][] data, String mark)
         {
-            
-        }
+            byte[] array = Utils.ImageUtil.BitmapSourceToByteArray(img);
+            String resStr = httpClient.Url(Constant.SERVER_UPLOAD_IMG_URL).Upload(array, "img", "img.jpg");
+            JSONObject resObj = new JSONObject(resStr);
+            bool success = bool.Parse(resObj.GetString("success"));
 
+            if (!success)
+            {
+                Utils.LogUtil.log(resStr);
+                return false;
+            }
+            String imgName = resObj.GetString("data");
+            resStr = httpClient.Url(Constant.SERVER_POSTURE_UPLOAD_URL)
+                .Param("name", name)
+                .Param("picPath", imgName)
+                .Param("data", Utils.CommonUtil.arrayToString(data))
+                .Param("mark", "")
+                .Post();
+            Utils.LogUtil.log(resStr);
+            resObj = new JSONObject(resStr);
+            return bool.Parse(resObj.GetString("success"));
+        }
 
     }
 }

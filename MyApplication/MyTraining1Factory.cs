@@ -13,9 +13,9 @@ namespace MyApplication.Training
 
     class MyTraining1Factory
     {
-        public static MyTraining1 create1()
+        public static MyPostureTraining create1()
         {
-            MyTraining1 training = new MyTraining1();
+            MyPostureTraining training = new MyPostureTraining();
 
             using (StreamReader sr = new StreamReader("d:/MyApplication/data/data1/data.txt"))
             {

@@ -28,6 +28,21 @@ namespace MyApplication.Utils
             }
         }
 
+        public static byte[] BitmapSourceToByteArray(BitmapSource source)
+        {
+            var encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(source));
+            byte[] array;
+            using (MemoryStream stream = new MemoryStream())
+            {
+                encoder.Frames.Add(BitmapFrame.Create(source));
+                encoder.Save(stream);
+                array = stream.ToArray();
+                stream.Close();
+            }
+            return array;
+        }
+
     }
     
 }

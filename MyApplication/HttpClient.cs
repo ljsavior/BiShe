@@ -47,7 +47,7 @@ namespace MyApplication.Http
             HttpContent fileContent = new ByteArrayContent(bytes);
             fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data") { Name = name, FileName = fileName };
             fileContent.Headers.ContentType = new MediaTypeHeaderValue("multipart/form-data");
-            content.Add(content);
+            content.Add(fileContent);
 
             HttpResponseMessage response = httpClient.PostAsync(new Uri(url), content).Result;
             String result = response.Content.ReadAsStringAsync().Result;

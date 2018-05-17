@@ -32,6 +32,8 @@ namespace MyApplication.MyPage
         private List<BitmapSource> imgList;
         private List<double[][]> vectorsList;
 
+        private Service.Service service = new Service.Service();
+
         public TemplateCollectPage()
         {
             InitializeComponent();
@@ -203,7 +205,11 @@ namespace MyApplication.MyPage
                 MessageBox.Show("请输入姿势名称");
                 return;
             }
-            MessageBox.Show("姿势数据上传成功");
+            int idx = (int)startSlider.Value;
+
+            bool res = service.uploadPosture(name, imgList[idx], vectorsList[idx], "");
+
+            MessageBox.Show(res ? "姿势数据上传成功" : "姿势数据上传失败");
             nameText.Text = "";
         }
 

@@ -104,7 +104,7 @@
     <Compile Include="LogUtil.cs" />
     <Compile Include="MyActionTraining.cs" />
     <Compile Include="MySkeleton.cs" />
-    <Compile Include="MyTraining1.cs" />
+    <Compile Include="MyPostureTraining.cs" />
     <Compile Include="ImageUtil.cs" />
     <Compile Include="OtherFunctionWindow.xaml.cs">
       <DependentUpon>OtherFunctionWindow.xaml</DependentUpon>

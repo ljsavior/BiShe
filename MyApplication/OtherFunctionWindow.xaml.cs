@@ -159,6 +159,7 @@ namespace MyApplication.MyWindow
 
         private void doTest(object sender, RoutedEventArgs e)
         {
+            /*
             MyActionSegmentData action = new MyActionSegmentData("d:/MyApplication/ActionData/1517659759365/skeletonData.txt", 69, 107, 1);
             List<MySkeleton> skeletonList = action.SkeletonList;
 
@@ -179,7 +180,23 @@ namespace MyApplication.MyWindow
             }
             
             //LogUtil.log(sb.ToString());
-            
+            */
+
+
+            BitmapSource source = new BitmapImage(new Uri("d:/eternal.jpg"));
+
+
+            Service.Service service = new Service.Service();
+
+            double[][] data = new double[4][];
+            data[0] = new double[] { 0.1, 0.1, 0.1 };
+            data[1] = new double[] { 0.2, 0.2, 0.2 };
+            data[2] = new double[] { 0.3, 0.3, 0.3 };
+            data[3] = new double[] { 0.4, 0.4, 0.4 };
+
+            bool res = service.uploadPosture("测试上传姿势", source, data, "");
+
+            MessageBox.Show(res ? "姿势数据上传成功" : "姿势数据上传失败");
 
 
         }
