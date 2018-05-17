@@ -29,7 +29,7 @@ namespace MyApplication.Service
             return namesArray;
         }
 
-        public void uploadTrainingRecord(String trainingName, List<int> timesUsed, List<bool> result)
+        public void uploadTrainingRecord(String trainingName, int trainingType, List<int> timesUsed, List<bool> result)
         {
             LoginService loginService = LoginService.getInstance();
             if (!loginService.IsLogin)
@@ -50,14 +50,20 @@ namespace MyApplication.Service
             }
 
             String resStr = httpClient.Url(Constant.SERVER_TRAINING_RECORD_UPDATE_URL)
-                .Param("username", loginService.Username)
+                .Param("userId", loginService.UserId.ToString())
                 .Param("trainingName", trainingName)
+                .Param("trainingType", trainingType.ToString())
                 .Param("timesUsed", timesUsedArray.ToString())
                 .Param("result", resultArray.ToString())
                 .Post();
 
             Utils.LogUtil.log(resStr);
 
+        }
+
+        public void uploadPosture(String name, String data, String mark)
+        {
+            
         }
 
 

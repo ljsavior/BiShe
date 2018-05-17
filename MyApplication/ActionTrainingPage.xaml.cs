@@ -20,6 +20,7 @@ namespace MyApplication.MyPage
     using System.Timers;
     using Utils;
     using System.Threading;
+    using Service;
 
     /// <summary>
     /// Interaction logic for ActionTrainingPage.xaml
@@ -35,6 +36,8 @@ namespace MyApplication.MyPage
         private volatile ActionImgPlayer player;
 
         private ActionMatcher actionMatcher = new ActionMatcher();
+
+        private Service service = new Service();
 
 
         public ActionTrainingPage()
@@ -145,6 +148,8 @@ namespace MyApplication.MyPage
             timer.Stop();
             consumer.stop();
             player.stop();
+
+            service.uploadTrainingRecord(TrainingNameSelect.Text, 1, training.timeUsedList, training.resultList);
         }
 
         public void VectorDataReady(double[][] vector)

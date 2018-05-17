@@ -14,6 +14,7 @@ namespace MyApplication.Service
         private static LoginService loginService = new LoginService();
 
         private bool isLogin = false;
+        private int userId = -1;
         private String username = null;
         private String password = null;
 
@@ -36,6 +37,14 @@ namespace MyApplication.Service
             }
         }
 
+        public int UserId
+        {
+            get
+            {
+                return userId;
+            }
+        }
+
         public string Username
         {
             get
@@ -43,6 +52,7 @@ namespace MyApplication.Service
                 return username;
             }
         }
+
 
         public bool login(String username, String password)
         {
@@ -56,6 +66,7 @@ namespace MyApplication.Service
             if(success)
             {
                 this.isLogin = true;
+                this.userId = resObj.GetInt("data");
                 this.username = username;
                 this.password = password;
             }

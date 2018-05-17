@@ -136,7 +136,7 @@ namespace MyApplication.MyPage
             timer.Stop();
             consumer.stop();
 
-            service.uploadTrainingRecord(TrainingNameSelect.Text, training.TimeUsedList, training.ResultList);
+            service.uploadTrainingRecord(TrainingNameSelect.Text, 0, training.TimeUsedList, training.ResultList);
 
         }
 

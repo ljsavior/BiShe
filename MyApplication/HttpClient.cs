@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace MyApplication.Http
 {
     using System.Net.Http;
+    using System.Net.Http.Headers;
 
     class HttpClient
     {
@@ -37,6 +38,22 @@ namespace MyApplication.Http
             reset();
 
             return result;
+        }
+
+        public String Upload(byte[] bytes, String name, String fileName)
+        {
+            MultipartFormDataContent content = new MultipartFormDataContent();
+
+            HttpContent fileContent = new ByteArrayContent(bytes);
+            fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data") { Name = name, FileName = fileName };
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue("multipart/form-data");
+            content.Add(content);
+
+            HttpResponseMessage response = httpClient.PostAsync(new Uri(url), content).Result;
+            String result = response.Content.ReadAsStringAsync().Result;
+            reset();
+            return result;
+
         }
 
         private void reset()
