@@ -1,0 +1,72 @@
+﻿<Page x:Class="MyApplication.MyPage.TemplateCollectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyApplication"
+      mc:Ignorable="d" 
+      d:DesignHeight="300"
+      Title="TemplateCollectPage" Width="799" Height="568">
+
+    <Grid Margin="0,0,0,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="346" />
+            <RowDefinition Height="220" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ContentControl Grid.Row="0" Grid.Column="0" Style="{StaticResource panel-info}" Margin="5">
+            <StackPanel>
+                <ContentControl Style="{StaticResource panel-heading-info}" Content="起点"/>
+                <ContentControl Style="{StaticResource panel-body}">
+                    <Image Grid.Row="0" Grid.Column="0" x:Name="startImg" HorizontalAlignment="Left" Height="240" Margin="10,2,10,2" VerticalAlignment="Top" Width="320"/>
+                </ContentControl>
+            </StackPanel>
+        </ContentControl>
+
+        <ContentControl Grid.Row="0" Grid.Column="1" Style="{StaticResource panel-info}" Margin="5">
+            <StackPanel>
+                <ContentControl Style="{StaticResource panel-heading-info}" Content="终点"/>
+                <ContentControl Style="{StaticResource panel-body}">
+                    <Image Grid.Row="0" Grid.Column="1" x:Name="endImg" HorizontalAlignment="Left" Height="240" Margin="10,2,10,2" VerticalAlignment="Top" Width="320"/>
+                </ContentControl>
+            </StackPanel>
+        </ContentControl>
+
+        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource panel-success}" Margin="5" Height="200">
+            <StackPanel Margin="0,0,0,6">
+                <ContentControl Style="{StaticResource panel-heading-success}" Content="数据"/>
+                <ContentControl Style="{StaticResource panel-body}" Height="151">
+                    <StackPanel Margin="0,0,0,-10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="90"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Slider x:Name="startSlider" ValueChanged="startSlider_ValueChanged" Grid.Row="0" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Width="631" IsSnapToTickEnabled="True"/>
+                            <TextBox x:Name="startNumText" HorizontalAlignment="Left" Height="32" Margin="652,10,0,0" TextWrapping="Wrap" Text="{Binding ElementName=startSlider,Path=Value}" VerticalAlignment="Top" Width="64"/>
+                            <Button x:Name="startUpdateButton" Style="{DynamicResource btn-info}" Width="32" RenderTransformOrigin="-3.703,0.734" Margin="723,10,2,48" Height="32"/>
+
+                            <Slider x:Name="endSlider" ValueChanged="endSlider_ValueChanged" Grid.Row="0" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" Width="631" IsSnapToTickEnabled="True"/>
+                            <TextBox x:Name="endNumText" HorizontalAlignment="Left" Height="32" Margin="651,51,0,0" TextWrapping="Wrap" Text="{Binding ElementName=endSlider,Path=Value}" VerticalAlignment="Top" Width="64"/>
+                            <Button x:Name="endUpdateButton" Style="{DynamicResource btn-info}" Width="32" RenderTransformOrigin="-3.703,0.734" Margin="723,51,2,7" Height="32"/>
+
+                            <Button x:Name="startButton" Click="startButton_Click" Grid.Row="1" Content="开始" Style="{DynamicResource btn-success}" Width="75" RenderTransformOrigin="-3.703,0.734" Margin="10,0,670,0"></Button>
+                            <Button x:Name="stopButton" Grid.Row="1" Content="停止" Style="{DynamicResource btn-danger}" Width="75" Margin="103,0,577,0" Click="stopButton_Click"></Button>
+                            <Button x:Name="updatePostureButton" Grid.Row="1" Content="上传姿势" Style="{DynamicResource btn-warning}" Width="91" Margin="546,0,118,0" Click="updatePostureButton_Click"></Button>
+                            <Button x:Name="updateActionButton" Grid.Row="1" Content="上传动作" Style="{DynamicResource btn-primary}" Width="91" Margin="653,0,11,0" Click="updateActionButton_Click"></Button>
+
+                            <TextBox x:Name="nameText" HorizontalAlignment="Left" Height="32" Margin="302,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="221" Grid.Row="1"/>
+                            <Label x:Name="label" Content="输入名称：" HorizontalAlignment="Left" Margin="211,8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="80" FontSize="16"/>
+                        </Grid>
+                    </StackPanel>
+                </ContentControl>
+            </StackPanel>
+        </ContentControl>
+
+
+    </Grid>
+</Page>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyApplication"
         mc:Ignorable="d"
-        Title="训练" Height="400" Width="820">
+        Title="动作训练" Height="400" Width="820">
     <Grid Margin="0,10,0,0">
         <Frame x:Name="frame" Content="Frame" HorizontalAlignment="Left" Height="340" Margin="10,10,0,0" VerticalAlignment="Top" Width="792" NavigationUIVisibility="Hidden"/>
 
