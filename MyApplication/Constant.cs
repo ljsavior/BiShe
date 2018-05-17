@@ -8,16 +8,23 @@ namespace MyApplication
 {
     class Constant
     {
-        public const String LOG_FILE_PATH = "d:/MyApplication/log/out.log";
+        public const String BASE_PATH = "d:/MyApplication";
+
+        public const String LOG_FILE_PATH = BASE_PATH + "/log/out.log";
         public const String LOG_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss,fff";
 
 
-        public const String SIMLUATION_EXE_PATH = "D:/MyApplication/RealTimeSimulation/simulation.exe";
+        public const String SIMLUATION_EXE_PATH = BASE_PATH + "/RealTimeSimulation/simulation.exe";
 
-        public const String GAME_EXE_PATH = "d:/MyApplication/Race/Race.exe";
+        public const String GAME_EXE_PATH = BASE_PATH + "/Race/Race.exe";
 
 
-        public const String ACTION_DATA_FILE_DIR_PATH = "d:/MyApplication/ActionData/";
+        public const String POSTURE_DATA_FILE_DIR_PATH = BASE_PATH + "/PostureData/";
+
+        public const String ACTION_DATA_FILE_DIR_PATH = BASE_PATH + "/ActionData/";
+
+
+
 
 
 

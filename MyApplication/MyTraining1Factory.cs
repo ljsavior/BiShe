@@ -17,11 +17,11 @@ namespace MyApplication.Training
         {
             MyPostureTraining training = new MyPostureTraining();
 
-            using (StreamReader sr = new StreamReader("d:/MyApplication/data/data1/data.txt"))
+            using (StreamReader sr = new StreamReader(Constant.BASE_PATH + "/data/data1/data.txt"))
             {
                 for (int i = 1; i <= 9; i++)
                 {
-                    training.PicPathList.Add("d:/MyApplication/data/data1/" + i + "_color.jpg");
+                    training.PicPathList.Add(Constant.BASE_PATH + "/data/data1/" + i + "_color.jpg");
 
                     Posture pos = new Posture(PostureType.Both);
                     List<VectorType> vectorTypeList = PostureRecognition.getVectorTypeList(PostureType.Both);
@@ -43,8 +43,8 @@ namespace MyApplication.Training
 
         public static MyActionTraining createActionTraining()
         {
-            ActionData action1 = ActionMatchingUtil.loadActionDataFromFile("d:/MyApplication/ActionData/1517659759365/", 69, 107);
-            ActionData action2 = ActionMatchingUtil.loadActionDataFromFile("d:/MyApplication/ActionData/1517658799185/", 70, 115); 
+            ActionData action1 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517659759365/", 69, 107);
+            ActionData action2 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517658799185/", 70, 115); 
 
 
             MyActionTraining training = new MyActionTraining();

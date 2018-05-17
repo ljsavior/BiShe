@@ -78,13 +78,13 @@ namespace MyApplication.MyWindow
 
         private void match()
         {
-            ActionData action1 = ActionMatchingUtil.loadActionDataFromFile("d:/MyApplication/ActionData/1517659759365/", 55, 113);
-            ActionData action2 = ActionMatchingUtil.loadActionDataFromFile("d:/MyApplication/ActionData/1517659759365/", 69, 107);
-            ActionData action3 = ActionMatchingUtil.loadActionDataFromFile("d:/MyApplication/ActionData/1517659759365/", 140, 181);
-            ActionData action4 = ActionMatchingUtil.loadActionDataFromFile("d:/MyApplication/ActionData/1517659759365/", 211, 278);
-            ActionData action5 = ActionMatchingUtil.loadActionDataFromFile("d:/MyApplication/ActionData/1517659759365/", 695, 734);
-            ActionData action6 = ActionMatchingUtil.loadActionDataFromFile("d:/MyApplication/ActionData/1517658799185/", 70, 115);
-            ActionData action7 = ActionMatchingUtil.loadActionDataFromFile("d:/MyApplication/ActionData/1517659759365/", 103, 132);
+            ActionData action1 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517659759365/", 55, 113);
+            ActionData action2 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517659759365/", 69, 107);
+            ActionData action3 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517659759365/", 140, 181);
+            ActionData action4 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517659759365/", 211, 278);
+            ActionData action5 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517659759365/", 695, 734);
+            ActionData action6 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517658799185/", 70, 115);
+            ActionData action7 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517659759365/", 103, 132);
 
             deal(action1, action2, action3, action4, action5, action6, action7);
         }
@@ -118,13 +118,13 @@ namespace MyApplication.MyWindow
 
         private void match1()
         {
-            MyActionSegmentData action1 = new MyActionSegmentData("d:/MyApplication/ActionData/1517659759365/skeletonData.txt", 55, 113, 3);
-            MyActionSegmentData action2 = new MyActionSegmentData("d:/MyApplication/ActionData/1517659759365/skeletonData.txt", 69, 107, 3);
-            MyActionSegmentData action3 = new MyActionSegmentData("d:/MyApplication/ActionData/1517659759365/skeletonData.txt", 140, 181, 3);
-            MyActionSegmentData action4 = new MyActionSegmentData("d:/MyApplication/ActionData/1517659759365/skeletonData.txt", 211, 278, 3);
-            MyActionSegmentData action5 = new MyActionSegmentData("d:/MyApplication/ActionData/1517659759365/skeletonData.txt", 695, 734, 3);
-            MyActionSegmentData action6 = new MyActionSegmentData("d:/MyApplication/ActionData/1517658799185/skeletonData.txt", 70, 115, 3);
-            MyActionSegmentData action7 = new MyActionSegmentData("d:/MyApplication/ActionData/1517659759365/skeletonData.txt", 103, 132, 3);
+            MyActionSegmentData action1 = new MyActionSegmentData(Constant.BASE_PATH + "/ActionData/1517659759365/skeletonData.txt", 55, 113, 3);
+            MyActionSegmentData action2 = new MyActionSegmentData(Constant.BASE_PATH + "/ActionData/1517659759365/skeletonData.txt", 69, 107, 3);
+            MyActionSegmentData action3 = new MyActionSegmentData(Constant.BASE_PATH + "/ActionData/1517659759365/skeletonData.txt", 140, 181, 3);
+            MyActionSegmentData action4 = new MyActionSegmentData(Constant.BASE_PATH + "/ActionData/1517659759365/skeletonData.txt", 211, 278, 3);
+            MyActionSegmentData action5 = new MyActionSegmentData(Constant.BASE_PATH + "/ActionData/1517659759365/skeletonData.txt", 695, 734, 3);
+            MyActionSegmentData action6 = new MyActionSegmentData(Constant.BASE_PATH + "/ActionData/1517658799185/skeletonData.txt", 70, 115, 3);
+            MyActionSegmentData action7 = new MyActionSegmentData(Constant.BASE_PATH + "/ActionData/1517659759365/skeletonData.txt", 103, 132, 3);
 
             deal1(action1, action2, action3, action4, action5, action6, action7);
         }
@@ -160,7 +160,7 @@ namespace MyApplication.MyWindow
         private void doTest(object sender, RoutedEventArgs e)
         {
             /*
-            MyActionSegmentData action = new MyActionSegmentData("d:/MyApplication/ActionData/1517659759365/skeletonData.txt", 69, 107, 1);
+            MyActionSegmentData action = new MyActionSegmentData(Constant.BASE_PATH + "/ActionData/1517659759365/skeletonData.txt", 69, 107, 1);
             List<MySkeleton> skeletonList = action.SkeletonList;
 
             skeletonList = ActionRecognitionUtil.meanFilter(skeletonList);

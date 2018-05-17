@@ -115,6 +115,7 @@
     <Compile Include="PostureCollectWindow.xaml.cs">
       <DependentUpon>PostureCollectWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PostureLoader.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="SkeletonDataComsumer.cs" />
     <Compile Include="TemplateCollectPage.xaml.cs">
