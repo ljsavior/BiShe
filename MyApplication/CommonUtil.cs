@@ -96,6 +96,73 @@ namespace MyApplication.Utils
             return sb.ToString();
         }
 
+        public static int[] stringToIntArray1(String str)
+        {
+            if (str == null || !str.StartsWith("[") || !str.EndsWith("]"))
+            {
+                throw new Exception("str格式错误.str=" + str);
+            }
+            str = str.Substring(1, str.Length - 2);
+            String[] strs = str.Split(',');
+            int[] res = new int[strs.Length];
+            for (int i = 0; i < strs.Length; i++)
+            {
+                res[i] = int.Parse(strs[i]);
+            }
+            return res;
+        }
+
+        public static double[] stringToDoubleArray1(String str)
+        {
+            if (str == null || !str.StartsWith("[") || !str.EndsWith("]"))
+            {
+                throw new Exception("str格式错误.str=" + str);
+            }
+            str = str.Substring(1, str.Length - 2);
+            String[] strs = str.Split(',');
+            double[] res = new double[strs.Length];
+            for(int i = 0; i < strs.Length; i++)
+            {
+                res[i] = double.Parse(strs[i]);
+            }
+            return res;
+        }
+
+        public static double[][] stringToDoubleArray2(String str)
+        {
+
+            List<String> strList = splitArray2Str(str);
+            double[][] res = new double[strList.Count][];
+            for(int i = 0; i < strList.Count; i++)
+            {
+                res[i] = stringToDoubleArray1(strList[i]);
+            }
+            return res;
+        }
+
+        private static List<String> splitArray2Str(String str)
+        {
+            if (str == null || !str.StartsWith("[[") || !str.EndsWith("]]"))
+            {
+                throw new Exception("str格式错误.str=" + str);
+            }
+            str = str.Substring(1, str.Length - 2);
+
+            List<String> strs = new List<string>();
+            int begin = 0, end = 1, len = str.Length;
+            while(end <= len)
+            {
+                if((end == len || str[end] == ',') && str[end - 1] == ']')
+                {
+                    strs.Add(str.Substring(begin, end - begin));
+                    begin = ++end;
+                }
+                end++;
+            }
+            return strs;
+        }
+
+
         public static long currentTimeMillis()
         {
             TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);

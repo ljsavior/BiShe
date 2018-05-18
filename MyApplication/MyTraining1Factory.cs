@@ -10,6 +10,7 @@ namespace MyApplication.Training
     using Posture;
     using Data;
     using Utils;
+    using com.force.json;
 
     class MyTraining1Factory
     {
@@ -21,10 +22,10 @@ namespace MyApplication.Training
             {
                 for (int i = 1; i <= 9; i++)
                 {
-                    training.PicPathList.Add(Constant.BASE_PATH + "/data/data1/" + i + "_color.jpg");
 
                     Posture pos = new Posture(PostureType.Both);
                     List<VectorType> vectorTypeList = PostureRecognition.getVectorTypeList(PostureType.Both);
+                    pos.setPic(Constant.BASE_PATH + "/data/data1/" + i + "_color.jpg");
 
                     foreach (VectorType type in vectorTypeList)
                     {
@@ -34,6 +35,31 @@ namespace MyApplication.Training
                     sr.ReadLine();
                     training.PostureList.Add(pos);
                 }
+            }
+
+            return training;
+        }
+
+        public static MyPostureTraining createPostureTraining(String trainingName)
+        {
+            Service.Service service = new Service.Service();
+            PostureLoader postureLoader = new PostureLoader();
+
+            MyPostureTraining training = new MyPostureTraining();
+            JSONObject trainingData = service.queryTraining(trainingName);
+
+            if(trainingData == null)
+            {
+                LogUtil.log("查询不到名称为[" + trainingName + "]的姿势训练.");
+                return training;
+            }
+
+            String postures = trainingData.GetString("postures");
+            int[] postureIds = Utils.CommonUtil.stringToIntArray1(postures);
+
+            for(int i = 0; i < postureIds.Length; i++)
+            {
+                training.PostureList.Add(postureLoader.Load(postureIds[i]));
             }
 
             return training;

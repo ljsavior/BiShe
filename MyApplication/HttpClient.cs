@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyApplication.Http
 {
+    using System.IO;
     using System.Net.Http;
     using System.Net.Http.Headers;
 
@@ -55,6 +56,29 @@ namespace MyApplication.Http
             return result;
 
         }
+
+
+        public bool downloadImg(String url, String saveFilePath)
+        {
+            try
+            {
+                HttpResponseMessage response = httpClient.GetAsync(new Uri(url)).Result;
+
+                byte[] data = response.Content.ReadAsByteArrayAsync().Result;
+
+                using (FileStream fs = new FileStream(saveFilePath, FileMode.Create))
+                {
+                    fs.Write(data, 0, data.Length);
+                    fs.Flush();
+                }
+                return true;
+            } catch(Exception e)
+            {
+                Utils.LogUtil.log(e.ToString());
+                return false;
+            }
+        }
+
 
         private void reset()
         {

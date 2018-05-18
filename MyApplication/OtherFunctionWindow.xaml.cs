@@ -182,7 +182,7 @@ namespace MyApplication.MyWindow
             //LogUtil.log(sb.ToString());
             */
 
-
+            /*
             BitmapSource source = new BitmapImage(new Uri("d:/eternal.jpg"));
 
 
@@ -197,6 +197,18 @@ namespace MyApplication.MyWindow
             bool res = service.uploadPosture("测试上传姿势", source, data, "");
 
             MessageBox.Show(res ? "姿势数据上传成功" : "姿势数据上传失败");
+            */
+
+
+            /*
+            Posture.PostureLoader loader = new Posture.PostureLoader();
+            Posture.Posture pos = loader.Load(1);
+            */
+
+            Training.MyPostureTraining training = Training.MyTraining1Factory.createPostureTraining("基本姿势训练");
+            LogUtil.log(training.PostureList.Count.ToString());
+
+
 
 
         }

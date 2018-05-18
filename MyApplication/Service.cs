@@ -86,5 +86,40 @@ namespace MyApplication.Service
             return bool.Parse(resObj.GetString("success"));
         }
 
+
+        public JSONObject queryPosture(int id)
+        {
+            try
+            {
+                String resStr = this.httpClient.Url(Constant.SERVER_POSTURE_QUERY_URL)
+                    .Param("id", id.ToString())
+                    .Post();
+                Utils.LogUtil.log(resStr);
+                JSONObject obj = new JSONObject(resStr);
+                return obj.GetJSONObject("data");
+            } catch(Exception e)
+            {
+                Utils.LogUtil.log(e.ToString());
+                return null;
+            }
+        }
+
+        public JSONObject queryTraining(String trainingName)
+        {
+            try
+            {
+                String resStr = httpClient.Url(Constant.SERVIER_GET_TRAINING_QUERY_URL)
+                .Param("name", trainingName)
+                .Post();
+                Utils.LogUtil.log(resStr);
+                JSONObject obj = new JSONObject(resStr);
+                return obj.GetJSONObject("data");
+            } catch(Exception ex)
+            {
+                Utils.LogUtil.log(ex.ToString());
+                return null;
+            }
+            
+        }
     }
 }

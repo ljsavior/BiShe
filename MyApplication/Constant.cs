@@ -34,11 +34,15 @@ namespace MyApplication
 
         public const String SERVIER_GET_TRAINING_NAME_LIST_URL = SERVER_HOST + "/client/training/nameList.json";
 
+        public const String SERVIER_GET_TRAINING_QUERY_URL = SERVER_HOST + "/client/training/get.json";
+
         public const String SERVER_TRAINING_RECORD_UPLOAD_URL = SERVER_HOST + "/client/trainingRecord/upload.json";
 
         public const String SERVER_UPLOAD_IMG_URL = SERVER_HOST + "/uploadImage.json";
 
         public const String SERVER_POSTURE_UPLOAD_URL = SERVER_HOST + "/posture/addOrUpdate.json";
+
+        public const String SERVER_POSTURE_QUERY_URL = SERVER_HOST + "/posture/get.json";
 
     }
 }

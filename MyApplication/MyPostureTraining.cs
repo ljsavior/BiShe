@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyApplication.Posture;
+using System.Windows.Media.Imaging;
 
 namespace MyApplication.Training
 {
@@ -13,7 +14,6 @@ namespace MyApplication.Training
     {
         private const int EachPositionTime = 30;
 
-        private List<String> picPathList = new List<String>();
         private List<Posture.Posture> postureList = new List<Posture.Posture>();
         private int index = -1;
         private int successCount = 0;
@@ -55,11 +55,6 @@ namespace MyApplication.Training
             currentPostureTime = EachPositionTime;
         }
 
-        public String getPic()
-        {
-            return picPathList[index];
-        }
-
         public Posture.Posture getPosture()
         {
             return postureList[index];
@@ -82,13 +77,6 @@ namespace MyApplication.Training
             }
         }
 
-        public List<string> PicPathList
-        {
-            get
-            {
-                return picPathList;
-            }
-        }
 
         public int Index
         {

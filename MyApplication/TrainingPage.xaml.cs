@@ -69,8 +69,7 @@ namespace MyApplication.MyPage
 
             if (!training.isFinish())
             {
-                String picPath = training.getPic();
-                targetImageElement.Source = new BitmapImage(new Uri(picPath));
+                targetImageElement.Source = training.getPosture().getPic();
             } else
             {
                 TrainingFinish();
@@ -92,8 +91,7 @@ namespace MyApplication.MyPage
             training.next();
             if (!training.isFinish())
             {
-                String picPath = training.getPic();
-                targetImageElement.Source = new BitmapImage(new Uri(picPath));
+                targetImageElement.Source = training.getPosture().getPic();
             }
 
             //update UI

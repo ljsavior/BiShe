@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace MyApplication.Posture
 {
@@ -159,6 +160,7 @@ namespace MyApplication.Posture
 
         private PostureType type;
         private Vector[] vectors = new Vector[4];
+        private BitmapImage pic;
 
         static Posture()
         {
@@ -184,6 +186,12 @@ namespace MyApplication.Posture
             }
         }
 
+        public Posture(PostureType type, double[][] vectors, String picPath) : this(type, vectors)
+        {
+            setPic(picPath);
+        }
+
+
         public void setVector(VectorType vectorType, Vector vector)
         {
             int vectorIndex = (int)vectorType;
@@ -194,6 +202,16 @@ namespace MyApplication.Posture
         {
             int vectorIndex = (int)vectorType;
             return vectors[vectorIndex];
+        }
+
+        public void setPic(String picPath)
+        {
+            this.pic = new BitmapImage(new Uri(picPath));
+        }
+
+        public BitmapImage getPic()
+        {
+            return this.pic;
         }
 
         internal PostureType Type
