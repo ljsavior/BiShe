@@ -51,6 +51,13 @@ namespace MyApplication.MyPage
                     Posture pos = new Posture(PostureType.Both, vectors);
                     Dispatcher.Invoke(() => PostureDataReady(pos));
                 });
+
+                String[] trainingNames = service.getTrainingNames(0);
+                foreach(String trainingName in trainingNames)
+                {
+                    TrainingNameSelect.Items.Add(trainingName);
+                }
+                
             };
 
             this.Unloaded += (s, e) => {
@@ -86,7 +93,16 @@ namespace MyApplication.MyPage
 
         private void Start_Training(object sender, RoutedEventArgs e)
         {
-            this.training = MyTraining1Factory.create1();
+            String trainingName = TrainingNameSelect.Text;
+
+            if(trainingName == null || trainingName.Equals(""))
+            {
+                MessageBox.Show("请选择训练");
+                return;
+            }
+
+
+            this.training = MyTraining1Factory.createPostureTraining(trainingName);
 
             training.next();
             if (!training.isFinish())

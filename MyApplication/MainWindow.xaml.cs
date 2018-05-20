@@ -77,7 +77,7 @@ namespace MyApplication
         private void do_Test(object sender, RoutedEventArgs e)
         {
             Service.Service service = new Service.Service();
-            String[] names = service.getTrainingNames();
+            String[] names = service.getTrainingNames(1);
             foreach (String name in names)
             {
                 Utils.LogUtil.log(name);

@@ -14,10 +14,12 @@ namespace MyApplication.Service
     {
         private HttpClient httpClient = new HttpClient();
 
-        public String[] getTrainingNames()
+        public String[] getTrainingNames(int trainingType)
         {
             String result = httpClient.Url(Constant.SERVIER_GET_TRAINING_NAME_LIST_URL)
+                .Param("type", trainingType.ToString())
                 .Post();
+            Utils.LogUtil.log(result);
 
             JSONArray names = new JSONArray(result);
             String[] namesArray = new String[names.Length()];
@@ -35,6 +37,7 @@ namespace MyApplication.Service
             LoginService loginService = LoginService.getInstance();
             if (!loginService.IsLogin)
             {
+                Utils.LogUtil.log("没有登录");
                 return;
             }
 
