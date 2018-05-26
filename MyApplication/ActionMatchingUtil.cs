@@ -161,7 +161,7 @@ namespace MyApplication.Utils
             LogUtil.log(sb.ToString());
 
 
-            return dtwResult.AvgSimilarity < 0.03;
+            return dtwResult.AvgSimilarity < 0.04;
         }
     }
 }

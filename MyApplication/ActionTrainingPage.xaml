@@ -74,12 +74,14 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="115"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="30"/>
                                 </Grid.ColumnDefinitions>
-                                <ProgressBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" x:Name="TrainingProgress" Value="0" Style="{DynamicResource progress-bar-success}" Margin="0,8,5,17" Height="30"></ProgressBar>
+                                <ProgressBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" x:Name="TrainingProgress" Value="0" Style="{DynamicResource progress-bar-success}" Margin="0,8,5,17" Height="30"></ProgressBar>
                                 <Label Grid.Row="1" Grid.Column="0" Content="剩余时间：" Style="{DynamicResource h4}" HorizontalAlignment="Right" Margin="0,15"></Label>
                                 <Label Grid.Row="1" Grid.Column="1" x:Name="TimeLabel" Content="" Style="{DynamicResource h4}" HorizontalAlignment="Left" Margin="0,15"></Label>
                                 <Label Grid.Row="1" Grid.Column="2" Content="完成情况：" Style="{DynamicResource h4}" HorizontalAlignment="Right" Margin="0,15"></Label>
                                 <Label Grid.Row="1" Grid.Column="3" x:Name="StatusLabel" Content="" Style="{DynamicResource h4}" HorizontalAlignment="Left" Margin="0,15"></Label>
+                                <Button x:Name="status_color" Grid.Row="1" Grid.Column="4" Style="{DynamicResource btn-danger}" Height="25" Width="25"></Button>
                             </Grid>
                         </StackPanel>
                     </ContentControl>

@@ -156,11 +156,24 @@ namespace MyApplication.MyPage
         {
             if (!training.isFinish())
             {
-                if(actionMatcher.onData(vector))
+                if(actionMatcher.onData(vector, (s) => { setStatusColor(s); }))
                 {
                     LogUtil.log("动作匹配成功。");
                     nextPosture(true);
                 }
+            }
+        }
+
+        public void setStatusColor(int status)
+        {
+            if(status == 0)
+            {
+                Style style = (Style)this.FindResource("btn-danger");
+                status_color.Style = style;
+            } else if (status == 1)
+            {
+                Style style = (Style)this.FindResource("btn-success");
+                status_color.Style = style;
             }
         }
 
@@ -246,8 +259,6 @@ namespace MyApplication.MyPage
             }
         }
 
-
-
     }
 
     class ActionMatcher
@@ -275,7 +286,7 @@ namespace MyApplication.MyPage
             matchCount = 0;
         }
 
-        public bool onData(double[][] vectorData)
+        public bool onData(double[][] vectorData, Action<int> action)
         {
             Posture.Posture currentPosture = new Posture.Posture(Posture.PostureType.Both, vectorData);
             if (!preStart)
@@ -294,6 +305,7 @@ namespace MyApplication.MyPage
             if(!start && !Posture.PostureRecognition.matches(currentPosture, startPosture))
             {
                 start = true;
+                action(1);
                 LogUtil.log("动作开始");
             }
 
@@ -337,6 +349,7 @@ namespace MyApplication.MyPage
                 LogUtil.log(actionData.dataList.Count + "," + acData.dataList.Count);
                 bool result = ActionMatchingUtil.match(actionData, acData);
                 init(actionData);
+                action(0);
                 return result;
             }
 

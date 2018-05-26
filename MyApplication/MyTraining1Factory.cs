@@ -70,11 +70,13 @@ namespace MyApplication.Training
         public static MyActionTraining createActionTraining()
         {
             ActionData action1 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517659759365/", 69, 107);
-            ActionData action2 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517658799185/", 70, 115); 
+            ActionData action2 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517658799185/", 70, 115);
+            ActionData action3 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517659205489/", 190, 270);
+            ActionData action4 = ActionMatchingUtil.loadActionDataFromFile(Constant.BASE_PATH + "/ActionData/1517658315751/", 240, 280);
 
 
             MyActionTraining training = new MyActionTraining();
-            training.addActions(action1, action2);
+            training.addActions(action1, action2, action3, action4);
 
             return training;
         }
